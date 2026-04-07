@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KINETIC | PRECISION PERFORMANCE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script src="js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-[#0c0e11]/80 backdrop-blur-xl">
+        <nav class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+            <div class="text-2xl font-black text-[#d1fc00] tracking-tighter font-headline">KINETIC</div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-[#d1fc00] border-b-2 border-[#d1fc00] pb-1 font-headline font-bold tracking-tight" href="#">Performance</a>
+                <a class="text-white/70 hover:text-white transition-colors font-headline font-bold tracking-tight" href="#">Nutrition</a>
+                <a class="text-white/70 hover:text-white transition-colors font-headline font-bold tracking-tight" href="#">Analytics</a>
+                <a class="text-white/70 hover:text-white transition-colors font-headline font-bold tracking-tight" href="#">Community</a>
+            </div>
+            <button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-headline font-bold text-sm hover:bg-[#d1fc00]/10 transition-all duration-300 scale-95 active:scale-90">
+                Start Free Trial
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="dramatic high-contrast black and white photography of an athlete sprinting in a dark urban environment with moody lighting and motion blur" 
+            src="https://images.unsplash.com/photo-1733517301482-59ba8b609ab0?q=80&w=1047&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-8 text-center md:text-left flex flex-col items-center md:items-start">
+            <h1 class="font-headline font-black italic text-5xl md:text-8xl lg:text-9xl tracking-tighter leading-[0.9] text-primary-container mb-8">
+                PRECISION<br />PERFORMANCE.<br /><span class="text-stroke-lime">FUELED BY DATA.</span>
+            </h1>
+            <p class="max-w-xl text-lg md:text-xl text-on-surface-variant mb-10 font-medium">
+                The elite ecosystem for those who refuse to settle for average. Every metric choreographed. Every move analyzed.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <button class="bg-primary-container text-on-primary-container px-10 py-5 rounded-full font-headline font-black text-lg tracking-tight hover:brightness-110 transition-all active:scale-95 shadow-[0_0_40px_-10px_rgba(209,252,0,0.3)]">
+                    START YOUR ELITE TRIAL
+                </button>
+                <button class="border border-outline-variant/30 text-on-surface px-10 py-5 rounded-full font-headline font-black text-lg tracking-tight hover:bg-white/5 transition-all">
+                    VIEW ECOSYSTEM
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section: Bento Grid -->
+    <section class="py-24 px-8 max-w-7xl mx-auto">
+        <div class="mb-16">
+            <span class="font-label text-xs uppercase tracking-[0.3em] text-primary-container">Capabilities</span>
+            <h2 class="font-headline text-4xl md:text-6xl font-bold mt-4">THE KINETIC EDGE</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <!-- Feature 1 -->
+            <div class="md:col-span-8 bg-surface-container-low rounded-xl p-8 flex flex-col justify-between min-h-[400px] border border-outline-variant/10 group hover:border-primary-container/30 transition-colors">
+                <div class="flex justify-between items-start">
+                    <span class="material-symbols-outlined text-primary-container text-4xl" data-icon="ecg_heart">ecg_heart</span>
+                    <span class="font-label text-[10px] text-on-surface-variant border border-outline-variant px-2 py-1 rounded">CORE_01</span>
+                </div>
+                <div>
+                    <h3 class="font-headline text-3xl font-bold text-on-surface mb-4">LOG EVERY BEAT</h3>
+                    <p class="text-on-surface-variant max-w-md">Precision biometric tracking that adapts to your physiological response in real-time. Experience zero-latency data ingestion.</p>
+                </div>
+                <div class="mt-8 flex gap-2">
+                    <div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                        <div class="h-full bg-primary-container w-2/3 group-hover:w-full transition-all duration-700"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="md:col-span-4 bg-surface-container-high rounded-xl p-8 flex flex-col border border-outline-variant/10 hover:bg-surface-bright transition-all">
+                <span class="material-symbols-outlined text-secondary text-4xl mb-6" data-icon="analytics">analytics</span>
+                <h3 class="font-headline text-2xl font-bold text-on-surface mb-4">ANALYZE THE BURN</h3>
+                <p class="text-on-surface-variant text-sm flex-grow">Deep neural insights into your metabolic efficiency and recovery windows. Data turned into kinetic energy.</p>
+                <div class="mt-6 flex items-baseline gap-2">
+                    <span class="text-4xl font-headline font-bold text-primary-container">98%</span>
+                    <span class="text-xs uppercase text-on-surface-variant font-label">Accuracy</span>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="md:col-span-4 bg-surface-container-low rounded-xl p-8 flex flex-col border border-outline-variant/10 hover:border-tertiary/30 transition-colors">
+                <span class="material-symbols-outlined text-tertiary text-4xl mb-6" data-icon="restaurant">restaurant</span>
+                <h3 class="font-headline text-2xl font-bold text-on-surface mb-4">CHOREOGRAPH NUTRITION</h3>
+                <p class="text-on-surface-variant text-sm">Automated fueling strategies aligned with your training intensity. Every gram calculated for peak output.</p>
+            </div>
+            <!-- Feature 4 - Visual Placeholder -->
+            <div class="md:col-span-8 bg-surface-container-highest rounded-xl relative overflow-hidden h-[300px] border border-outline-variant/10">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-60" data-alt="atmospheric photo of a high-tech modern gym at night with neon lime accents and sleek equipment reflecting the light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2gjJfGpQmVqc7VC9ufI4wic0qEvd2Ebt3PTnaILbc2vRLHc6RRH2wiBbggsGrp47Qf-rGIovqWAhNzDtHtdng1QlDR7S-OFz7AWvBtdR_ushcDX4H_4JE7LXuFxo8qX7la1PhrBzBxEVF-pFZuma4z1tmbVQgn007e1hmZayCy39HIHqiUjtlJbPjGVitnj5ZX0fUzUk_bS7UXfXTVsnYLIrbC6LY0Yis0bxEXpgjVU1t4kjhPoceqzgweDxFRe7rR01U1wit0aM" />
+                <div class="absolute inset-0 bg-gradient-to-r from-surface-container-highest to-transparent p-8 flex items-end">
+                    <button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-full font-headline text-sm font-bold">
+                        EXPLORE THE GEAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Preview Section -->
+    <section class="bg-surface-container-lowest py-24 px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <span class="font-label text-xs uppercase tracking-[0.3em] text-secondary">Interface</span>
+                <h2 class="font-headline text-4xl md:text-6xl font-bold mt-4 mb-8 leading-tight">MASTER YOUR<br />DASHBOARD</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-secondary/10 p-3 rounded-xl">
+                            <span class="material-symbols-outlined text-secondary" data-icon="dashboard">dashboard</span>
+                        </div>
+                        <div>
+                            <h4 class="font-headline font-bold text-lg mb-1">Unified Intelligence</h4>
+                            <p class="text-on-surface-variant text-sm">All your vitals, performance trends, and future projections in one editorial canvas.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-primary-container/10 p-3 rounded-xl">
+                            <span class="material-symbols-outlined text-primary-container" data-icon="query_stats">query_stats</span>
+                        </div>
+                        <div>
+                            <h4 class="font-headline font-bold text-lg mb-1">Advanced Charting</h4>
+                            <p class="text-on-surface-variant text-sm">Multi-axis comparisons and predictive AI that spots burnout before it happens.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mockup Style Visual -->
+            <div class="relative">
+                <div class="absolute -top-12 -right-12 w-64 h-64 bg-secondary/20 rounded-full blur-[100px]"></div>
+                <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-primary-container/10 rounded-full blur-[100px]"></div>
+                <div class="relative glass-card border border-white/10 rounded-3xl p-6 shadow-2xl">
+                    <!-- Dashboard Mockup {{DATA:SCREEN:SCREEN_6}} -->
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <div class="text-[10px] uppercase font-label tracking-widest text-on-surface-variant">Daily Readiness</div>
+                            <div class="text-4xl font-headline font-black text-primary-container">84/100</div>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border-2 border-secondary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-secondary text-sm" data-icon="bolt">bolt</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4 mb-8">
+                        <div class="bg-surface/50 p-4 rounded-xl flex justify-between items-center">
+                            <span class="text-sm font-medium">Heart Rate Variability</span>
+                            <span class="text-secondary font-headline font-bold">62 ms</span>
+                        </div>
+                        <div class="bg-surface/50 p-4 rounded-xl flex justify-between items-center">
+                            <span class="text-sm font-medium">Caloric Burn</span>
+                            <span class="text-tertiary font-headline font-bold">2,480 kcal</span>
+                        </div>
+                    </div>
+                    <!-- Progress Chart {{DATA:SCREEN:SCREEN_4}} -->
+                    <div class="mt-8 pt-8 border-t border-outline-variant/20">
+                        <div class="flex justify-between items-end h-32 gap-2">
+                            <div class="bg-surface-container-highest w-full rounded-t-lg h-1/2"></div>
+                            <div class="bg-surface-container-highest w-full rounded-t-lg h-3/4"></div>
+                            <div class="bg-primary-container w-full rounded-t-lg h-full shadow-[0_-5px_15px_rgba(209,252,0,0.4)]"></div>
+                            <div class="bg-surface-container-highest w-full rounded-t-lg h-2/3"></div>
+                            <div class="bg-secondary w-full rounded-t-lg h-5/6"></div>
+                            <div class="bg-surface-container-highest w-full rounded-t-lg h-1/2"></div>
+                        </div>
+                        <div class="flex justify-between mt-4 text-[10px] font-label text-on-surface-variant">
+                            <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-24 px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="font-headline text-3xl font-bold tracking-tight uppercase">ELITE ATHLETES</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="text-center">
+                <img class="w-24 h-24 rounded-full mx-auto mb-6 object-cover grayscale hover:grayscale-0 transition-all duration-500 border-2 border-primary-container" data-alt="portrait of a focused professional endurance athlete with sweat on skin, looking intensely toward the camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfwHM9Nf_0e-nB4KduX3PmQnTh52yf_mWN0thdgxJIJzJfinHncJ43o7WDdS52bM5NP6O9ZeHrG4wuFJjKcwKq-hLXe8Z7vVyroZ9UbQyHqd0lMW3J5uCXpN_IZuLX7vaU9X7JrbDnT3RxF6gKyIdq-Mu_GsP6XTeyFr3whXW2Yx2NGltkmXyMCmU0uaiy2hSYGsk8rRGILSDDFplgrf3WsLCmzMpJSycMxlz8lYcRUQ7I4YGrdCZ1ymTdoVKo0OC2PEIuZFr8DoI" />
+                <p class="text-on-surface italic text-lg mb-4">"The data granularity on Kinetic is unmatched. It's not an app; it's an unfair advantage."</p>
+                <div class="font-headline font-bold uppercase text-xs tracking-widest">Marcus Thorne</div>
+                <div class="text-primary-container text-[10px] font-label">IRONMAN PRO</div>
+            </div>
+            <div class="text-center">
+                <img class="w-24 h-24 rounded-full mx-auto mb-6 object-cover grayscale hover:grayscale-0 transition-all duration-500 border-2 border-secondary" data-alt="close-up of a high-performance trainer athlete during a workout, dramatic lighting focusing on muscle definition and determination" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWkHMD8BfROlFfnIy0xVbsKai_vOWvBbA6rv2yD3vA933EhojVzA4gPPf7UoGUdUizr1WEh6YIN4MQnFmtd7MrO40zKiIlgILbBRDGpk_tNgRWoRfpxmT_oWpAYClJSldZwgPPLJr1IdEFMHoFwiGjSN5a54_nPghHi3B-D-Yx3-RxjtRxuwZR2-YLM3-tPnyjwdC_d1biIu9-va3G3_QBZhf62A7YuBUFoQsOfWxzCGXnWdWCRlR6uiIYPd5u2_QRGcnQL1NBkZY" />
+                <p class="text-on-surface italic text-lg mb-4">"Finally, an interface that treats human performance like the science it actually is."</p>
+                <div class="font-headline font-bold uppercase text-xs tracking-widest">Elena Vance</div>
+                <div class="text-secondary text-[10px] font-label">OLYMPIC FINALIST</div>
+            </div>
+            <div class="text-center">
+                <img class="w-24 h-24 rounded-full mx-auto mb-6 object-cover grayscale hover:grayscale-0 transition-all duration-500 border-2 border-tertiary" data-alt="side profile of a male athlete in mid-sprint, focusing on speed and kinetic energy with high contrast lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsRVBvvcIPqz_f_0bsHIURBySOX6QigcJVcaMwBe0k0yTMsP32NCO2B-uLLLv3IFLLgL1xZwCmon97Pvheo-HvRMyI4xPn9GsnoYSnDV5-tcFfPtBMcjH4mH6KnOV7ALhqDbFrpKbtOVePP7Gks2yc5rYlBk1nnCO1sVIGDC1hk-QyfX_euoeUB2LQRGm-Kbr6NXWQGddQvxoN2BCayimS1imFfpQgjkzesPwH798N0lt7d5BSLFUCQj5uO6gFHvhawufsajjey_8" />
+                <p class="text-on-surface italic text-lg mb-4">"The nutrition choreography is what changed my game. Recovery has never been this fast."</p>
+                <div class="font-headline font-bold uppercase text-xs tracking-widest">Jordan Kim</div>
+                <div class="text-tertiary text-[10px] font-label">UFC LIGHTWEIGHT</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-32 px-8 bg-primary-container text-on-primary-container relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <span class="absolute top-0 left-0 text-[20rem] font-black font-headline select-none -translate-x-1/4 -translate-y-1/4">KINETIC</span>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <h2 class="font-headline text-5xl md:text-7xl font-black mb-8 leading-tight">JOIN THE PRECISION MOVEMENT.</h2>
+            <p class="text-on-primary-container/80 text-xl md:text-2xl mb-12 font-medium">Don't just train. Perform with mathematical certainty.</p>
+            <button class="bg-on-primary-container text-primary-container px-12 py-6 rounded-full font-headline font-black text-xl tracking-tight hover:scale-105 active:scale-95 transition-all shadow-2xl">
+                START FREE TRIAL NOW
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-[#1d2024] bg-[#0c0e11]">
+        <div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6 max-w-7xl mx-auto">
+            <div class="text-lg font-black text-[#d1fc00] font-headline tracking-tighter">KINETIC</div>
+            <div class="flex gap-8 font-['Manrope'] text-xs uppercase tracking-widest">
+                <a class="text-white/40 hover:text-[#d1fc00] transition-colors" href="#">Privacy</a>
+                <a class="text-white/40 hover:text-[#d1fc00] transition-colors" href="#">Terms</a>
+                <a class="text-white/40 hover:text-[#d1fc00] transition-colors" href="#">Research</a>
+                <a class="text-white/40 hover:text-[#d1fc00] transition-colors" href="#">Contact</a>
+            </div>
+            <div class="font-['Manrope'] text-xs uppercase tracking-widest text-white/40">
+                © 2024 KINETIC PRECISION. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -204,32 +204,45 @@ a { text-decoration: none; }
 /* Dashboard Layout Specific */
 .main-wrapper { min-height: 100vh; }
 
-@media (min-width: 768px) { .main-content { margin-left: 240px; } }
-.top-bar { background-color: var(--surface); height: 64px; }
-.sidebar { background-color: var(--surface); width: 16rem; top: 64px; height: 95vh; }
-.bottom-nav { background-color: var(--surface); height: 64px; border-top: 1px solid rgba(70, 72, 75, 0.1); }
+@media (min-width: 768px) { .main-content { margin-left: 220px; } }
+.top-bar { background-color: var(--surface-container); height: 64px; }
+.sidebar { background-color: var(--surface-container); width: 220px; top: 64px; height: 95vh; }
+.bottom-nav { background-color: var(--surface-container); height: 64px; border-top: 1px solid rgba(70, 72, 75, 0.1); }
+
 .sidebar-link { 
     display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem;
     font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em;
     font-family: var(--font-headline); transition: all 0.15s;
     text-decoration: none; color: #64748b; 
 }
-
-.sidebar-link:hover { color: #fff; background-color: #1d2024; }
+.sidebar-link:hover { color: var(--primary-container); background-color: #1d2024; transition: var(--transition); }
 .sidebar-link.active {
     color: var(--primary-container); border-left: 4px solid var(--primary-container);
-    background: linear-gradient(90deg, rgba(209, 252, 0, 0.1) 0%, transparent 100%);
+    background-color: var(--on-primary-container);
     padding-left: 1.25rem;
+    transition: var(--transition);
 }
 
-.hover-bg-high { transition: all 0.3s ease; }
-.hover-bg-high:hover { background-color: var(--surface-container-high) !important; }
+.icon { transition: var(--transition); }
+.icon:hover { color: var(--primary-container) !important; }
 .ring-gradient-stop-1 { stop-color: var(--primary); }
 .ring-gradient-stop-2 { stop-color: var(--primary-container); }
 .glow-effect {
     position: absolute; top: -6rem; right: -6rem; width: 16rem; height: 16rem;
     background-color: rgba(209, 252, 0, 0.05); border-radius: 50%; filter: blur(100px); pointer-events: none;
 }
+
+.btn-log {
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+    font-family: var(--font-headline);
+    font-weight: 700;
+    transition: var(--transition);
+    border: none;
+    border-radius: 999px;
+    padding: 10px 20px;
+}
+.btn-log:hover { background-color: var(--hover-primary-container); color: var(--primary-container);}
 
 /* Entrance Animations */
 @keyframes slideUpFade {

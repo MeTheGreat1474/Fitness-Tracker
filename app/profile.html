@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KINETIC | Profile Management</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../public/CSS/style.css">
+</head>
+<body class="bg-surface text-white">
+
+    <!-- Top Bar -->
+    <header class="fixed-top w-100 z-50 top-bar d-flex justify-content-between align-items-center px-4">
+        <div class="d-flex align-items-center gap-4">
+            <a href="../index.html" class="fs-2 font-black text-primary-container font-headline tracking-tight text-decoration-none">
+                KASIM
+            </a>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn text-secondary p-1 text-decoration-none rounded-circle" type="button">
+                <span class="material-symbols-outlined text-white-50">notifications</span>
+            </button>
+
+            <button class="btn text-secondary p-1 text-decoration-none rounded-circle" type="button">
+                <span class="material-symbols-outlined text-white-50">settings</span>
+            </button>
+
+            <div class="btn btn-link overflow-hidden border border-outline-variant p-0 d-flex align-items-center justify-content-center"
+                 style="width: 32px; height: 32px;">
+                <span class="material-symbols-outlined text-white-50">person</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="d-none d-md-flex position-fixed start-0 sidebar flex-column pt-4 z-2">
+        <nav class="d-flex flex-column flex-grow-1">
+            <a class="sidebar-link" href="Dashboard.html">
+                <span class="material-symbols-outlined">grid_view</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a class="sidebar-link" href="#">
+                <span class="material-symbols-outlined">fitness_center</span>
+                <span>Fitness Log</span>
+            </a>
+
+            <a class="sidebar-link" href="#">
+                <span class="material-symbols-outlined">monitoring</span>
+                <span>Analytics</span>
+            </a>
+
+            <a class="sidebar-link" href="#">
+                <span class="material-symbols-outlined">restaurant</span>
+                <span>Nutrition</span>
+            </a>
+
+            <a class="sidebar-link" href="reminder.html">
+                <span class="material-symbols-outlined">notifications_active</span>
+                <span>Reminders</span>
+            </a>
+
+            <a class="sidebar-link active" href="profile.html">
+                <span class="material-symbols-outlined">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+        <div class="p-2 mb-4">
+            <button class="btn-log w-100" type="button">
+                <span class="material-symbols-outlined">edit</span>
+                <span class="text-xs">Edit Profile</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content pt-5 mt-5 pb-5 px-4">
+        <header class="mb-5">
+            <div class="d-flex align-items-end gap-3 mb-2">
+                <span class="font-bold text-xs text-uppercase tracking-widest text-primary-container">User Account</span>
+                <div class="flex-grow-1 bg-outline-variant opacity-25 mb-2" style="height: 1px;"></div>
+            </div>
+
+            <h1 class="display-1 font-black font-headline tracking-tighter lh-1 fst-italic">
+                PROFILE <span class="text-primary-container">MANAGER</span>
+            </h1>
+
+            <p class="text-on-surface-variant mt-3 mb-0">
+                View and update personal information for the fitness tracker account.
+            </p>
+        </header>
+
+        <div class="row g-4">
+            <!-- Left: profile info -->
+            <div class="col-12 col-lg-4">
+                <section class="bg-surface-container-high p-4 rounded-4 h-100">
+                    <div class="text-center">
+                        <div
+                            id="profileAvatar"
+                            class="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-dark border border-secondary"
+                            style="width: 120px; height: 120px; font-size: 42px; font-weight: 700;">
+                            J
+                        </div>
+
+                        <h3 id="displayName" class="font-black font-headline mb-2">John Doe</h3>
+                        <p id="displayEmail" class="text-on-surface-variant mb-4">john@email.com</p>
+
+                        <div class="bg-surface-container p-4 rounded-4 text-start">
+                            <p class="mb-2 d-flex justify-content-between">
+                                <span>Age</span>
+                                <span id="displayAge">19</span>
+                            </p>
+
+                            <p class="mb-2 d-flex justify-content-between">
+                                <span>Weight</span>
+                                <span id="displayWeight">70 kg</span>
+                            </p>
+
+                            <p class="mb-0 d-flex justify-content-between">
+                                <span>Height</span>
+                                <span id="displayHeight">175 cm</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right: edit form -->
+            <div class="col-12 col-lg-8">
+                <section class="bg-surface-container-low p-4 rounded-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-primary-container">edit_square</span>
+                        <h3 class="h5 font-black font-headline text-uppercase tracking-tighter fst-italic mb-0">
+                            Edit Profile
+                        </h3>
+                    </div>
+
+                    <form id="profileForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nameInput" class="form-label text-on-surface-variant">Full Name</label>
+                                <input
+                                    id="nameInput"
+                                    type="text"
+                                    class="form-control bg-dark text-white border-secondary"
+                                    placeholder="Enter full name">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="emailInput" class="form-label text-on-surface-variant">Email</label>
+                                <input
+                                    id="emailInput"
+                                    type="email"
+                                    class="form-control bg-dark text-white border-secondary"
+                                    placeholder="Enter email">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="ageInput" class="form-label text-on-surface-variant">Age</label>
+                                <input
+                                    id="ageInput"
+                                    type="number"
+                                    class="form-control bg-dark text-white border-secondary"
+                                    placeholder="Enter age">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="weightInput" class="form-label text-on-surface-variant">Weight (kg)</label>
+                                <input
+                                    id="weightInput"
+                                    type="number"
+                                    class="form-control bg-dark text-white border-secondary"
+                                    placeholder="Enter weight">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="heightInput" class="form-label text-on-surface-variant">Height (cm)</label>
+                                <input
+                                    id="heightInput"
+                                    type="number"
+                                    class="form-control bg-dark text-white border-secondary"
+                                    placeholder="Enter height">
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex gap-2">
+                            <button type="submit" class="btn btn-warning px-4 fw-bold">Save Profile</button>
+                            <button type="button" id="resetBtn" class="btn btn-outline-light">Reset</button>
+                        </div>
+                    </form>
+
+                    <div id="saveMessage" class="alert alert-success mt-4 d-none" role="alert">
+                        Profile updated successfully.
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile nav -->
+    <nav class="d-md-none position-fixed bottom-0 w-100 bottom-nav d-flex justify-content-around align-items-center px-4 z-3">
+        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="Dashboard.html">
+            <span class="material-symbols-outlined">grid_view</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">Home</span>
+        </a>
+
+        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="#">
+            <span class="material-symbols-outlined">fitness_center</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">Log</span>
+        </a>
+
+        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="reminder.html">
+            <span class="material-symbols-outlined">notifications_active</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">Alert</span>
+        </a>
+
+        <a class="d-flex flex-column align-items-center gap-1 text-primary-container text-decoration-none" href="profile.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">User</span>
+        </a>
+    </nav>
+
+    <script src="../public/JS/profile.js"></script>
+</body>
+</html>

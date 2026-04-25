@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>KINETIC | Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/CSS/style.css" />
+    <style>
+        .filter-btn-group .btn {
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--bs-gray-400);
+            background: transparent;
+            border: 1px solid var(--bs-gray-800);
+        }
+        .filter-btn-group .btn.active {
+            background-color: var(--bs-lime) !important;
+            color: var(--bs-black) !important;
+            border-color: var(--bs-lime) !important;
+        }
+        .action-card {
+            background-color: var(--bs-surface-container-low);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .action-card:hover {
+            transform: translateY(-2px);
+            background-color: var(--bs-surface-container);
+        }
+        .progress-bar-custom {
+            height: 6px;
+            border-radius: 3px;
+            background-color: var(--bs-surface-container-highest);
+            overflow: hidden;
+        }
+        .circular-gauge {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 8px solid var(--bs-surface-container-highest);
+            border-top-color: var(--bs-lime);
+            border-right-color: var(--bs-lime);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(45deg);
+        }
+        .circular-gauge-inner {
+            transform: rotate(-45deg);
+        }
+        /* Color Overrides based on mockup */
+        :root {
+            --bs-lime: #d1fc00;
+            --bs-cyan: #00e3fd;
+            --bs-orange: #ff5722;
+            --bs-black: #000;
+            --bs-gray-900: #121212;
+            --bs-gray-800: #1e1e1e;
+            --bs-gray-400: #9e9e9e;
+        }
+    </style>
+</head>
+<body class="bg-surface text-white">
+
+<!-- TopAppBar -->
+<header class="fixed-top w-100 z-50 top-bar d-flex justify-content-between align-items-center px-4">
+    <div class="d-flex align-items-center gap-4">
+        <a href="../index.html" class="fs-2 font-black text-primary-container font-headline tracking-tight">KASIM</a>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+        <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
+            <span class="material-symbols-outlined text-white-50 icon" data-icon="notifications">notifications</span>
+        </button>
+        <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
+            <span class="material-symbols-outlined text-white-50 icon" data-icon="settings">settings</span>
+        </button>
+        <a href="#" class="btn btn-link overflow-hidden border border-outline-variant p-0" style="width: 32px; height: 32px;">
+            <img alt="User profile" class="w-100 h-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5SBqkdZoN3VzzcZYYZlnSP0G26h4NKE-NwJU9v0As8ket5DFw0YdipCfnK9me9CDKZQsRCd1LdvQNXIILjE4u_FDaJlbTkJA16VAMosbz9d98Ogw1N6oYmL_NUvyFpd5Pbkz7slr_jbxNWtNllKOVl69xPiVrDYq-NtInT27ruN186Io9fIaX-_Yn0glOskksKq6zcV6NRT0ADbyFgQ_WEtNlw9Mc4_TN9BHqbz9NXGemPaPYECthZ3EkoRTQ9DAviI8RfliF7bs" class="img-fluid"/>
+        </a>
+    </div>
+</header>
+
+<!-- SideNavBar (Desktop) -->
+<aside class="d-none d-md-flex position-fixed start-0 sidebar flex-column pt-4 z-2">
+    <nav class="d-flex flex-column flex-grow-1">
+        <a class="sidebar-link" href="Dashboard.html">
+            <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+            <span>Dashboard</span>
+        </a>
+        <a class="sidebar-link" href="#">
+            <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+            <span>Fitness Log</span>
+        </a>
+        <a class="sidebar-link active" href="charts.html">
+            <span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+            <span>Analytics</span>
+        </a>
+        <a class="sidebar-link" href="#">
+            <span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+            <span>Nutrition</span>
+        </a>
+        <a class="sidebar-link" href="reminder.html">
+            <span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+            <span>Reminders</span>
+        </a>
+        <a class="sidebar-link" href="profile.html">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span>Profile</span>
+        </a>
+    </nav>
+    <div class="p-2 mb-4">
+        <button class="btn-log w-100">
+            <span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+            <span class="text-xs">Log Workout</span>
+        </button>
+    </div>
+</aside>
+
+<!-- Main Content -->
+<main class="main-content pt-5 mt-5 pb-5 px-4">
+    <!-- Header Section -->
+    <header class="mb-5">
+        <div class="d-flex align-items-end gap-3 mb-2">
+            <span class="font-bold text-xs text-uppercase tracking-widest text-primary-container">Performance Data</span>
+            <div class="flex-grow-1 bg-outline-variant opacity-25 mb-2" style="height: 1px;"></div>
+        </div>
+
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-4">
+            <div>
+                <h1 class="display-1 font-black font-headline tracking-tighter lh-1 fst-italic">
+                    DATA <span class="text-primary-container">INSIGHTS</span>
+                </h1>
+                <p class="text-on-surface-variant mt-3 mb-0">
+                    Detailed breakdown of your physical output and metabolic trends.
+                </p>
+            </div>
+            <div class="filter-btn-group d-flex gap-2 bg-surface-container-low p-1 rounded-pill">
+                <button class="btn btn-sm" id="btn-daily">DAILY</button>
+                <button class="btn btn-sm active" id="btn-weekly" style="background-color: #d1fc00; color: #000;">WEEKLY</button>
+                <button class="btn btn-sm" id="btn-monthly">MONTHLY</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bento Grid Layout -->
+    <div class="row g-4">
+        <!-- Main Line Chart (Step Trajectory) -->
+        <div class="col-12 col-xl-8 d-flex flex-column">
+            <div class="bg-surface-container-high p-4 rounded-4 position-relative h-100">
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <div>
+                        <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant">STEP TRAJECTORY</span>
+                        <h2 class="display-4 font-black font-headline text-primary-container mt-1 mb-0" id="step-value">84,200 <span class="fs-6 font-normal text-on-surface-variant">/wk</span></h2>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 text-tertiary">
+                        <span class="material-symbols-outlined fs-5">trending_up</span>
+                        <span class="font-bold fs-5">+12%</span>
+                    </div>
+                </div>
+                <div style="height: 300px; width: 100%;">
+                    <canvas id="stepTrajectoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bar Chart (High Intensity) -->
+        <div class="col-12 col-xl-4 d-flex flex-column">
+            <div class="bg-surface-container-high p-4 rounded-4 position-relative h-100 d-flex flex-column">
+                <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant mb-1">HIGH INTENSITY</span>
+                <h2 class="display-4 font-black font-headline text-tertiary mb-4" id="intensity-value">320 <span class="fs-6 font-normal text-on-surface-variant">min</span></h2>
+                
+                <div class="flex-grow-1" style="min-height: 150px; position: relative;">
+                    <canvas id="highIntensityChart"></canvas>
+                </div>
+
+                <div class="mt-4 pt-3 border-top border-outline-variant d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-xxs text-uppercase font-bold tracking-widest text-on-surface-variant d-block mb-1">TARGET</span>
+                        <span class="font-bold fs-5" id="intensity-target">250 min/wk</span>
+                    </div>
+                    <div class="rounded-circle border border-tertiary d-flex align-items-center justify-content-center p-2" style="width: 48px; height: 48px;">
+                        <span class="text-xs font-bold text-tertiary">128%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Calories Consumed vs Burned Chart -->
+        <div class="col-12 d-flex flex-column">
+            <div class="bg-surface-container-high p-4 rounded-4 position-relative h-100">
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <div>
+                        <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant">CALORIC BALANCE</span>
+                        <h2 class="display-5 font-black font-headline mt-1 mb-0" id="calories-value"><span class="text-primary-container">16,550</span> IN <span class="text-on-surface-variant fs-4 px-2">/</span> <span class="text-tertiary">18,000</span> OUT</h2>
+                    </div>
+                    <div class="d-flex align-items-center gap-1 text-primary-container" id="calories-status">
+                        <span class="material-symbols-outlined fs-5">local_fire_department</span>
+                        <span class="font-bold text-xs text-uppercase tracking-widest">NET LOSS</span>
+                    </div>
+                </div>
+                <div style="height: 300px; width: 100%;">
+                    <canvas id="caloriesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Cards Row -->
+        <div class="col-12 col-md-4">
+            <div class="action-card p-4 rounded-4 h-100 cursor-pointer">
+                <span class="material-symbols-outlined text-tertiary mb-3">analytics</span>
+                <h4 class="h5 font-bold mb-2">Export Health Report</h4>
+                <p class="text-xs text-on-surface-variant mb-0">Generate a PDF of your monthly cardiovascular performance.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="action-card p-4 rounded-4 h-100 cursor-pointer">
+                <span class="material-symbols-outlined text-primary-container mb-3">track_changes</span>
+                <h4 class="h5 font-bold mb-2">Recalibrate Goals</h4>
+                <p class="text-xs text-on-surface-variant mb-0">Based on recent data, we suggest increasing daily steps to 12k.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="action-card p-4 rounded-4 h-100 cursor-pointer">
+                <span class="material-symbols-outlined text-danger mb-3">warning</span>
+                <h4 class="h5 font-bold mb-2">Rest Required</h4>
+                <p class="text-xs text-on-surface-variant mb-0">Muscle fatigue is peaking. Schedule a recovery session tomorrow.</p>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="d-md-none position-fixed bottom-0 w-100 bottom-nav d-flex justify-content-around align-items-center px-4 z-3">
+    <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="Dashboard.html">
+        <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+        <span class="text-xxs font-bold text-uppercase tracking-tighter">Home</span>
+    </a>
+    <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="#">
+        <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+        <span class="text-xxs font-bold text-uppercase tracking-tighter">Log</span>
+    </a>
+    <a class="d-flex flex-column align-items-center gap-1 text-primary-container text-decoration-none" href="charts.html">
+        <span class="material-symbols-outlined" data-icon="monitoring" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+        <span class="text-xxs font-bold text-uppercase tracking-tighter">Data</span>
+    </a>
+    <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="profile.html">
+        <span class="material-symbols-outlined" data-icon="person">person</span>
+        <span class="text-xxs font-bold text-uppercase tracking-tighter">User</span>
+    </a>
+</nav>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Chart.js via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Custom JS -->
+<script src="../public/JS/charts.js"></script>
+</body>
+</html>

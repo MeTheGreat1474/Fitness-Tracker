@@ -108,7 +108,11 @@
             <span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
             <span>Nutrition</span>
         </a>
-        <a class="sidebar-link" href="#">
+        <a class="sidebar-link" href="reminder.html">
+            <span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+            <span>Reminders</span>
+        </a>
+        <a class="sidebar-link" href="profile.html">
             <span class="material-symbols-outlined" data-icon="person">person</span>
             <span>Profile</span>
         </a>
@@ -124,15 +128,26 @@
 <!-- Main Content -->
 <main class="main-content pt-5 mt-5 pb-5 px-4">
     <!-- Header Section -->
-    <header class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end mb-5 gap-4">
-        <div>
-            <h1 class="display-3 font-black font-headline tracking-tighter lh-1 mb-2">PERFORMANCE</h1>
-            <p class="text-on-surface-variant mb-0 fs-5">Detailed breakdown of your physical output and<br>metabolic trends.</p>
+    <header class="mb-5">
+        <div class="d-flex align-items-end gap-3 mb-2">
+            <span class="font-bold text-xs text-uppercase tracking-widest text-primary-container">Performance Data</span>
+            <div class="flex-grow-1 bg-outline-variant opacity-25 mb-2" style="height: 1px;"></div>
         </div>
-        <div class="filter-btn-group d-flex gap-2 bg-surface-container-low p-1 rounded-pill">
-            <button class="btn btn-sm" id="btn-daily">DAILY</button>
-            <button class="btn btn-sm active" id="btn-weekly" style="background-color: #d1fc00; color: #000;">WEEKLY</button>
-            <button class="btn btn-sm" id="btn-monthly">MONTHLY</button>
+
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-4">
+            <div>
+                <h1 class="display-1 font-black font-headline tracking-tighter lh-1 fst-italic">
+                    DATA <span class="text-primary-container">INSIGHTS</span>
+                </h1>
+                <p class="text-on-surface-variant mt-3 mb-0">
+                    Detailed breakdown of your physical output and metabolic trends.
+                </p>
+            </div>
+            <div class="filter-btn-group d-flex gap-2 bg-surface-container-low p-1 rounded-pill">
+                <button class="btn btn-sm" id="btn-daily">DAILY</button>
+                <button class="btn btn-sm active" id="btn-weekly" style="background-color: #d1fc00; color: #000;">WEEKLY</button>
+                <button class="btn btn-sm" id="btn-monthly">MONTHLY</button>
+            </div>
         </div>
     </header>
 
@@ -239,7 +254,7 @@
         <span class="material-symbols-outlined" data-icon="monitoring" style="font-variation-settings: 'FILL' 1;">monitoring</span>
         <span class="text-xxs font-bold text-uppercase tracking-tighter">Data</span>
     </a>
-    <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="#">
+    <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="profile.html">
         <span class="material-symbols-outlined" data-icon="person">person</span>
         <span class="text-xxs font-bold text-uppercase tracking-tighter">User</span>
     </a>

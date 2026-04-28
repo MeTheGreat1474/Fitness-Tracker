@@ -20,9 +20,12 @@
                 <a class="nav-link text-on-surface opacity-75 text-decoration-none font-headline font-bold tracking-tight" href="#Interface">Interface</a>
                 <a class="nav-link text-on-surface opacity-75 text-decoration-none font-headline font-bold tracking-tight" href="#Testimonials">Testimonials</a>
             </div>
-            <a href='app/Dashboard.html' class="btn btn-trial font-headline font-bold text-sm">
-                Start Free Trial
-            </a>
+           <a href="#"
+   class="btn btn-trial font-headline font-bold text-sm"
+   data-bs-toggle="modal"
+   data-bs-target="#authModal">
+    Start Free Trial
+</a>
         </nav>
     </header>
 
@@ -40,9 +43,14 @@
                 The elite ecosystem for those who refuse to settle for average. Every metric choreographed. Every move analyzed.
             </p>
             <div class="d-flex flex-column flex-sm-row gap-3 w-100 w-sm-auto animate-slide-up-fade animation-delay-500">
-                <a href='app/Dashboard.html' class="hero-btn hero-btn-primary fs-5">
-                    START YOUR ELITE TRIAL
-                </a>
+               <a href="#"
+   class="hero-btn hero-btn-primary fs-5"
+   data-bs-toggle="modal"
+   data-bs-target="#authModal">
+
+                   
+START YOUR ELITE TRIAL
+</a>
                 <a href='app/Dashboard.html' class="btn hero-btn hero-btn-outline fs-5">
                     VIEW ECOSYSTEM
                 </a>
@@ -221,9 +229,13 @@
         <div class="position-relative z-10 mx-auto text-center py-5" style="max-width: 56rem;">
             <h2 class="font-headline display-3 font-black mb-5 animate-slide-up-fade">JOIN THE PRECISION MOVEMENT.</h2>
             <p class="text-on-primary-container fs-4 mb-5 font-bold animate-slide-up-fade animation-delay-200">Don't just train. Perform with mathematical certainty.</p>
-            <a href='app/Dashboard.html' class="btn btn-cta mt-5 animate-slide-up-fade animation-delay-400" style="padding: 1.5rem 3rem; font-size: 1.25rem; border: none; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
-                START FREE TRIAL NOW
-            </a>
+            <a href="#"
+   class="btn btn-cta mt-5 animate-slide-up-fade animation-delay-400"
+   data-bs-toggle="modal"
+   data-bs-target="#authModal"
+   style="padding: 1.5rem 3rem; font-size: 1.25rem; border: none; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+    START FREE TRIAL NOW
+</a>
         </div>
     </section>
 
@@ -261,5 +273,24 @@
             });
         });
     </script>
+<div class="modal fade" id="authModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white p-4 rounded-4 text-center">
+
+      <h2 class="mb-3">Welcome</h2>
+      <p class="mb-4">Please sign up or login to continue</p>
+
+      <a href="app/signup.html" class="btn btn-success mb-3 w-100">
+        Sign Up
+      </a>
+
+      <a href="app/login.html" class="btn btn-outline-light w-100">
+        Login
+      </a>
+
+    </div>
+  </div>
+</div>
+    
 </body>
 </html>

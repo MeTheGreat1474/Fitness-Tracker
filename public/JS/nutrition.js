@@ -78,6 +78,19 @@ class NutritionDAO {
         return new Promise(resolve => setTimeout(() => resolve({ targetKcal: newTarget }), 300));
     }
 
+    async addMacros(protein, carbs, fats) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                this.data.macros.protein += protein;
+                this.data.macros.carbs += carbs;
+                this.data.macros.fats += fats;
+                this.data.consumedKcal = (this.data.macros.protein * 4) + (this.data.macros.carbs * 4) + (this.data.macros.fats * 9);
+                this._saveLocal();
+                resolve({ ...this.data });
+            }, 50);
+        });
+    }
+
     async toggleMealLike(mealId) {
         const isLiked = this.data.likedMeals.includes(mealId);
         if (isLiked) {
@@ -112,6 +125,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const fatsValEl = document.getElementById('fats-val');
     const macroTotalValEl = document.getElementById('macro-total-val');
     const nutritionBars = document.querySelectorAll('.nutrition-bar-chart > div');
+
+    // Quick Add Elements
+    const btnSaveQuickAdd = document.getElementById('btn-save-quick-add');
+    const quickAddProtein = document.getElementById('quick-add-protein');
+    const quickAddCarbs = document.getElementById('quick-add-carbs');
+    const quickAddFats = document.getElementById('quick-add-fats');
 
     // Initialization
     async function initUI() {
@@ -199,6 +218,40 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (macroTotalValEl) animateValue(macroTotalValEl, getVal(macroTotalValEl), calcTotal(macros.protein * 30, macros.carbs * 30, macros.fats * 30), 1000, 'kcal');
             });
         }
+    }
+
+    // Quick Add Event Listener
+    if (btnSaveQuickAdd) {
+        btnSaveQuickAdd.addEventListener('click', async () => {
+            const p = parseInt(quickAddProtein.value) || 0;
+            const c = parseInt(quickAddCarbs.value) || 0;
+            const f = parseInt(quickAddFats.value) || 0;
+            
+            // Call API
+            await db.addMacros(p, c, f);
+            
+            // Close Modal
+            const modalEl = document.getElementById('quickAddModal');
+            if (modalEl) {
+                const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+                modal.hide();
+            }
+            
+            // Clear inputs
+            quickAddProtein.value = '';
+            quickAddCarbs.value = '';
+            quickAddFats.value = '';
+            
+            // Re-render UI to animate new values (and default back to Daily view)
+            const btnDaily = document.getElementById('btn-daily');
+            if (btnDaily) {
+                const buttons = document.querySelectorAll('.filter-btn-group .btn');
+                buttons.forEach(btn => btn.classList.remove('active'));
+                btnDaily.classList.add('active');
+            }
+            
+            initUI();
+        });
     }
 
     let currentTarget = 0;

@@ -39,6 +39,26 @@
         .nutrition-bar-chart>div {
             width: 8px;
             border-radius: 4px;
+            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .filter-btn-group .btn {
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--on-surface-variant);
+            background: transparent;
+            border: 1px solid var(--outline-variant);
+            transition: all 0.2s;
+        }
+
+        .filter-btn-group .btn.active {
+            background-color: var(--primary-container) !important;
+            color: var(--on-primary-container) !important;
+            border-color: var(--primary-container) !important;
         }
     </style>
 </head>
@@ -103,19 +123,15 @@
                 <span>Profile</span>
             </a>
         </nav>
-        <div class="p-2 mb-4">
-            <button class="btn-log w-100">
-                <span class="text-xs">LOG WORKOUT</span>
-            </button>
-        </div>
+
     </aside>
 
     <!-- Main Content -->
     <main class="main-content pt-5 mt-5 pb-5 px-4">
         <!-- Hero Section -->
-        <div class="row align-items-end mb-4 animate-slide-up-fade is-visible">
+        <div class="row align-items-end mb-4">
             <div class="col-12 col-xl-8">
-                <span class="font-bold text-xs text-uppercase tracking-widest text-on-surface-variant">Fuel Your
+                <span class="font-bold text-xs text-uppercase tracking-widest text-secondary">Fuel Your
                     Precision</span>
                 <h1 class="display-2 font-black font-headline tracking-tighter lh-1 fst-italic mt-2 mb-0 text-white">
                     NUTRITION<br><span class="text-secondary">CHOREOGRAPHY</span></h1>
@@ -125,11 +141,12 @@
                 <div class="bg-surface-container-high p-4 rounded-4 position-relative overflow-hidden h-100">
                     <div class="d-flex justify-content-between align-items-end mb-3">
                         <span class="text-xs font-bold text-uppercase tracking-widest text-on-surface-variant">Daily
-                            Burn Goal</span>
-                        <span id="burn-goal-text" class="h4 font-black font-headline text-primary-container mb-0 fst-italic">84%</span>
+                            Intake Goal</span>
+                        <span id="burn-goal-text"
+                            class="h4 font-black font-headline text-primary-container mb-0 fst-italic">84%</span>
                     </div>
                     <div class="bg-surface-container-highest rounded-pill overflow-hidden mb-4" style="height: 4px;">
-                        <div id="burn-goal-bar" class="bg-secondary h-100" style="width: 84%;"></div>
+                        <div id="burn-goal-bar" class="bg-secondary h-100" style="width: 0%;"></div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div>
@@ -150,52 +167,62 @@
 
         <div class="row g-4 mb-5">
             <!-- Nutritional Insights -->
-            <div class="col-12 col-lg-8 animate-slide-up-fade is-visible animation-delay-100">
-                <div class="bg-surface-container-low p-4 rounded-4 h-100">
-                    <h3 class="h5 font-black font-headline text-white fst-italic mb-4">Nutritional Insights</h3>
-                    <div class="row g-4 position-relative">
-                        <!-- Icon background -->
-                        <span
-                            class="material-symbols-outlined position-absolute end-0 top-0 text-surface-container-highest opacity-50 z-0"
-                            style="font-size: 120px; line-height: 1; transform: translate(10%, -10%);"
-                            data-icon="bar_chart">bar_chart</span>
+            <div class="col-12 col-lg-8">
+                <div class="bg-surface-container-low p-4 rounded-4 h-100 position-relative overflow-hidden">
+
+
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4 gap-3 position-relative z-10">
+                        <h3 class="h5 font-black font-headline text-white fst-italic mb-0">
+                            Nutritional Insights</h3>
+                        <div class="filter-btn-group d-flex gap-2 bg-surface-container p-1 rounded-pill">
+                            <button class="btn btn-sm active" id="btn-daily">DAILY</button>
+                            <button class="btn btn-sm" id="btn-weekly">WEEKLY</button>
+                            <button class="btn btn-sm" id="btn-monthly">MONTHLY</button>
+                        </div>
+                    </div>
+                    <div class="row g-4 position-relative z-10">
 
                         <div class="col-4 position-relative z-10">
-                            <h2 class="display-6 font-black font-headline text-primary-container mb-1">165g</h2>
+                            <h2 id="protein-val" class="display-6 font-black font-headline text-primary-container mb-1">
+                                0g</h2>
                             <span
                                 class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Protein
                                 (High)</span>
                             <div class="mt-4 nutrition-bar-chart">
-                                <div class="bg-primary-container opacity-50" style="height: 60%;"></div>
-                                <div class="bg-primary-container" style="height: 100%;"></div>
-                                <div class="bg-primary-container opacity-75" style="height: 40%;"></div>
-                                <div class="bg-primary-container opacity-50" style="height: 80%;"></div>
-                                <div class="bg-primary-container opacity-50" style="height: 30%;"></div>
+                                <div class="bg-primary-container opacity-50" data-target-height="60%"
+                                    style="height: 0%;"></div>
+                                <div class="bg-primary-container" data-target-height="100%" style="height: 0%;"></div>
+                                <div class="bg-primary-container opacity-75" data-target-height="40%"
+                                    style="height: 0%;"></div>
+                                <div class="bg-primary-container opacity-50" data-target-height="80%"
+                                    style="height: 0%;"></div>
+                                <div class="bg-primary-container opacity-50" data-target-height="30%"
+                                    style="height: 0%;"></div>
                             </div>
                         </div>
                         <div class="col-4 position-relative z-10">
-                            <h2 class="display-6 font-black font-headline text-secondary mb-1">210g</h2>
+                            <h2 id="carbs-val" class="display-6 font-black font-headline text-secondary mb-1">0g</h2>
                             <span
                                 class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Carbohydrates</span>
                             <div class="mt-4 nutrition-bar-chart">
-                                <div class="bg-secondary opacity-50" style="height: 40%;"></div>
-                                <div class="bg-secondary opacity-75" style="height: 60%;"></div>
-                                <div class="bg-secondary" style="height: 100%;"></div>
-                                <div class="bg-secondary opacity-50" style="height: 50%;"></div>
-                                <div class="bg-secondary opacity-50" style="height: 70%;"></div>
+                                <div class="bg-secondary opacity-50" data-target-height="40%" style="height: 0%;"></div>
+                                <div class="bg-secondary opacity-75" data-target-height="60%" style="height: 0%;"></div>
+                                <div class="bg-secondary" data-target-height="100%" style="height: 0%;"></div>
+                                <div class="bg-secondary opacity-50" data-target-height="50%" style="height: 0%;"></div>
+                                <div class="bg-secondary opacity-50" data-target-height="70%" style="height: 0%;"></div>
                             </div>
                         </div>
                         <div class="col-4 position-relative z-10">
-                            <h2 class="display-6 font-black font-headline text-tertiary mb-1">58g</h2>
+                            <h2 id="fats-val" class="display-6 font-black font-headline text-tertiary mb-1">0g</h2>
                             <span
                                 class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Healthy
                                 Fats</span>
                             <div class="mt-4 nutrition-bar-chart">
-                                <div class="bg-tertiary opacity-75" style="height: 50%;"></div>
-                                <div class="bg-tertiary" style="height: 80%;"></div>
-                                <div class="bg-tertiary opacity-50" style="height: 40%;"></div>
-                                <div class="bg-tertiary opacity-75" style="height: 60%;"></div>
-                                <div class="bg-tertiary opacity-50" style="height: 30%;"></div>
+                                <div class="bg-tertiary opacity-75" data-target-height="50%" style="height: 0%;"></div>
+                                <div class="bg-tertiary" data-target-height="100%" style="height: 0%;"></div>
+                                <div class="bg-tertiary opacity-50" data-target-height="40%" style="height: 0%;"></div>
+                                <div class="bg-tertiary opacity-75" data-target-height="60%" style="height: 0%;"></div>
+                                <div class="bg-tertiary opacity-50" data-target-height="30%" style="height: 0%;"></div>
                             </div>
                         </div>
                     </div>
@@ -203,7 +230,7 @@
             </div>
 
             <!-- Precision Calculator -->
-            <div class="col-12 col-lg-4 animate-slide-up-fade is-visible animation-delay-200">
+            <div class="col-12 col-lg-4">
                 <div class="bg-surface-container-high p-4 rounded-4 h-100 d-flex flex-column">
                     <h3 class="h5 font-black font-headline text-white fst-italic mb-4">Precision Calculator</h3>
 
@@ -242,7 +269,7 @@
         </div>
 
         <!-- Bottom Section -->
-        <div class="row g-4 animate-slide-up-fade is-visible animation-delay-300">
+        <div class="row g-4">
             <!-- Meal Curator -->
             <div class="col-12 col-lg-8">
                 <div class="d-flex justify-content-between align-items-center mb-4">

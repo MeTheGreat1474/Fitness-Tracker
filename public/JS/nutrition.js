@@ -6,11 +6,15 @@
 class NutritionDAO {
     constructor() {
         this.storageKey = 'kinetic_nutrition_data';
-        
+
         // Initial mock state if DB is empty
         this.defaultData = {
-            targetKcal: 2450,
-            consumedKcal: 2070, // Remaining would be 380
+            targetKcal: 3025,
+            macros: {
+                protein: 165,
+                carbs: 210,
+                fats: 58
+            },
             activityLevel: "Elite Athlete (6+ sessions/wk)",
             weight: 82,
             likedMeals: ['meal-2', 'fav-1', 'fav-3'] // Mock some initial liked meals
@@ -22,10 +26,21 @@ class NutritionDAO {
     _loadLocal() {
         try {
             const stored = localStorage.getItem(this.storageKey);
-            return stored ? JSON.parse(stored) : { ...this.defaultData };
+            let parsedData = stored ? JSON.parse(stored) : { ...this.defaultData };
+
+            // Ensure backwards compatibility if macros didn't exist in older storage
+            if (!parsedData.macros) {
+                parsedData.macros = { ...this.defaultData.macros };
+            }
+
+            // Calculate consumedKcal dynamically from stored macros using the intake formula
+            parsedData.consumedKcal = (parsedData.macros.protein * 4) + (parsedData.macros.carbs * 4) + (parsedData.macros.fats * 9);
+            return parsedData;
         } catch (e) {
             console.error("Local storage error:", e);
-            return { ...this.defaultData };
+            let fallbackData = { ...this.defaultData };
+            fallbackData.consumedKcal = (fallbackData.macros.protein * 4) + (fallbackData.macros.carbs * 4) + (fallbackData.macros.fats * 9);
+            return fallbackData;
         }
     }
 
@@ -53,8 +68,8 @@ class NutritionDAO {
         else multiplier = 18;
 
         // Arbitrary mockup formula for visual update
-        const newTarget = Math.round((weight * multiplier) + 400); 
-        
+        const newTarget = Math.round((weight * multiplier) + 400);
+
         this.data.activityLevel = activityLevel;
         this.data.weight = weight;
         this.data.targetKcal = newTarget;
@@ -81,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log("Nutrition module loaded.");
 
     const db = new NutritionDAO();
-    
+
     // UI Elements
     const targetKcalEl = document.getElementById('target-kcal');
     const remainingKcalEl = document.getElementById('remaining-kcal');
@@ -92,35 +107,96 @@ document.addEventListener('DOMContentLoaded', async () => {
     const burnGoalTextEl = document.getElementById('burn-goal-text');
     const burnGoalBarEl = document.getElementById('burn-goal-bar');
 
+    const proteinValEl = document.getElementById('protein-val');
+    const carbsValEl = document.getElementById('carbs-val');
+    const fatsValEl = document.getElementById('fats-val');
+    const nutritionBars = document.querySelectorAll('.nutrition-bar-chart > div');
+
     // Initialization
     async function initUI() {
         const data = await db.getUserNutritionData();
-        
+
         // Populate inputs
         if (activityLevelSelect) activityLevelSelect.value = data.activityLevel;
         if (targetWeightInput) targetWeightInput.value = data.weight;
-        
-        // Populate stats (no animation on initial load)
-        updateStatsUI(data.targetKcal, data.consumedKcal, false);
+
+        // Populate stats (with animation on initial load)
+        updateStatsUI(data.targetKcal, data.consumedKcal, true);
 
         // Populate likes
         likeButtons.forEach(btn => {
             const mealId = btn.getAttribute('data-meal-id');
             const icon = btn.classList.contains('like-icon') ? btn : btn.querySelector('.like-icon');
-            
+
             if (data.likedMeals.includes(mealId)) {
                 setLikedState(btn, icon, true);
             } else {
                 setLikedState(btn, icon, false);
             }
         });
+
+        // Animate Macros
+        if (proteinValEl) animateValue(proteinValEl, 0, 165, 1500, 'g');
+        if (carbsValEl) animateValue(carbsValEl, 0, 210, 1500, 'g');
+        if (fatsValEl) animateValue(fatsValEl, 0, 58, 1500, 'g');
+
+        nutritionBars.forEach(bar => {
+            const targetHeight = bar.getAttribute('data-target-height');
+            if (targetHeight) {
+                setTimeout(() => {
+                    bar.style.height = targetHeight;
+                }, 50); // slight delay to ensure browser paints initial 0% state
+            }
+        });
+
+        // Interactivity (Time Filters for Nutritional Insights)
+        const btnDaily = document.getElementById('btn-daily');
+        const btnWeekly = document.getElementById('btn-weekly');
+        const btnMonthly = document.getElementById('btn-monthly');
+
+        function setActiveBtn(activeBtn) {
+            if (!activeBtn) return;
+            [btnDaily, btnWeekly, btnMonthly].forEach(btn => {
+                if (btn) btn.classList.remove('active');
+            });
+            activeBtn.classList.add('active');
+        }
+
+        const getVal = el => parseInt(el.textContent.replace(/,/g, '').replace('g', '')) || 0;
+
+        if (btnDaily) {
+            btnDaily.addEventListener('click', () => {
+                setActiveBtn(btnDaily);
+                animateValue(proteinValEl, getVal(proteinValEl), 165, 1000, 'g');
+                animateValue(carbsValEl, getVal(carbsValEl), 210, 1000, 'g');
+                animateValue(fatsValEl, getVal(fatsValEl), 58, 1000, 'g');
+            });
+        }
+
+        if (btnWeekly) {
+            btnWeekly.addEventListener('click', () => {
+                setActiveBtn(btnWeekly);
+                animateValue(proteinValEl, getVal(proteinValEl), 1155, 1000, 'g');
+                animateValue(carbsValEl, getVal(carbsValEl), 1470, 1000, 'g');
+                animateValue(fatsValEl, getVal(fatsValEl), 406, 1000, 'g');
+            });
+        }
+
+        if (btnMonthly) {
+            btnMonthly.addEventListener('click', () => {
+                setActiveBtn(btnMonthly);
+                animateValue(proteinValEl, getVal(proteinValEl), 4950, 1000, 'g');
+                animateValue(carbsValEl, getVal(carbsValEl), 6300, 1000, 'g');
+                animateValue(fatsValEl, getVal(fatsValEl), 1740, 1000, 'g');
+            });
+        }
     }
 
     let currentTarget = 0;
     let currentRemaining = 0;
     let currentPercentage = 0;
 
-    function animateValue(obj, start, end, duration, isPercentage = false) {
+    function animateValue(obj, start, end, duration, format = '') {
         if (!obj) return;
         let startTimestamp = null;
         const step = (timestamp) => {
@@ -129,13 +205,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Ease out cubic for premium smooth feel
             const ease = 1 - Math.pow(1 - progress, 3);
             const currentVal = Math.floor(ease * (end - start) + start);
-            
-            obj.textContent = isPercentage ? `${currentVal}%` : currentVal.toLocaleString();
-            
+
+            const formattedVal = format === '%' ? `${currentVal}%` : format === 'g' ? `${currentVal}g` : currentVal.toLocaleString();
+            obj.textContent = formattedVal;
+
             if (progress < 1) {
                 window.requestAnimationFrame(step);
             } else {
-                obj.textContent = isPercentage ? `${end}%` : end.toLocaleString();
+                obj.textContent = format === '%' ? `${end}%` : format === 'g' ? `${end}g` : end.toLocaleString();
             }
         };
         window.requestAnimationFrame(step);
@@ -148,7 +225,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (animate) {
             animateValue(targetKcalEl, currentTarget, target, 1500);
             animateValue(remainingKcalEl, currentRemaining, remaining, 1500);
-            animateValue(burnGoalTextEl, currentPercentage, percentage, 1500, true);
+            animateValue(burnGoalTextEl, currentPercentage, percentage, 1500, '%');
         } else {
             if (targetKcalEl) targetKcalEl.textContent = target.toLocaleString();
             if (remainingKcalEl) remainingKcalEl.textContent = remaining.toLocaleString();
@@ -158,7 +235,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (burnGoalBarEl) {
             burnGoalBarEl.style.transition = animate ? 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
             // Force reflow if we just changed transition
-            void burnGoalBarEl.offsetWidth; 
+            void burnGoalBarEl.offsetWidth;
             burnGoalBarEl.style.width = `${percentage}%`;
         }
 
@@ -169,7 +246,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function setLikedState(btn, icon, isLiked) {
         if (!icon) return;
-        
+
         if (isLiked) {
             icon.style.fontVariationSettings = "'FILL' 1";
             icon.classList.remove('text-white-50');
@@ -210,12 +287,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     likeButtons.forEach(btn => {
         btn.addEventListener('click', async (e) => {
             // Prevent default behavior if it's an anchor or button inside form
-            e.preventDefault(); 
+            e.preventDefault();
             e.stopPropagation();
 
             const mealId = btn.getAttribute('data-meal-id');
             const icon = btn.classList.contains('like-icon') ? btn : btn.querySelector('.like-icon');
-            
+
             if (!mealId) return;
 
             // Optimistic UI update

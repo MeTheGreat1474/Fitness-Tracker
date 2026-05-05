@@ -92,66 +92,24 @@
 
         <!-- Bento Grid Layout -->
         <div class="row g-4">
-            <!-- Activity Rings Column -->
-            <div class="col-12 col-md-5 d-flex flex-column">
-                <div class="bg-surface-container-high p-4 rounded-4 position-relative overflow-hidden h-100">
-                    <div class="position-relative z-3 d-flex flex-column h-100 justify-content-between">
+            <div class="col-12 col-xl-4 d-flex flex-column">
+                <div class="bg-surface-container-high p-4 rounded-4 position-relative h-100 d-flex flex-column">
+                    <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant mb-1">HIGH INTENSITY</span>
+                    <h2 class="display-4 font-black font-headline text-tertiary mb-4" id="intensity-value">320 <span class="fs-6 font-normal text-on-surface-variant">min</span></h2>
+                    
+                    <div class="flex-grow-1" style="min-height: 150px; position: relative;">
+                        <canvas id="highIntensityChart"></canvas>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top border-outline-variant d-flex justify-content-between align-items-center">
                         <div>
-                            <span
-                                class="font-bold text-xxs text-uppercase tracking-widest text-primary-container">Active
-                                Progress</span>
-                            <h2 class="display-5 font-black font-headline mt-2 mb-0">12,482 <span
-                                    class="fs-6 font-normal text-on-surface-variant">STEPS</span></h2>
+                            <span class="text-xxs text-uppercase font-bold tracking-widest text-on-surface-variant d-block mb-1">TARGET</span>
+                            <span class="font-bold fs-5" id="intensity-target">250 min/wk</span>
                         </div>
-                        <div class="mt-5 d-flex justify-content-center position-relative">
-                            <!-- SVG Activity Ring -->
-                            <svg class="width-auto" style="width: 16rem; height: 16rem; transform: rotate(-90deg);">
-                                <circle class="text-surface-container-highest" cx="128" cy="128" fill="transparent"
-                                    r="100" stroke="currentColor" stroke-width="12"></circle>
-                                <circle cx="128" cy="128" fill="transparent" r="100" stroke="url(#ringGradient)"
-                                    stroke-dasharray="628" stroke-dashoffset="120" stroke-linecap="round"
-                                    stroke-width="12"></circle>
-                                <circle class="text-surface-container-highest" cx="128" cy="128" fill="transparent"
-                                    r="80" stroke="currentColor" stroke-width="12"></circle>
-                                <circle cx="128" cy="128" fill="transparent" r="80" stroke="#00e3fd"
-                                    stroke-dasharray="502" stroke-dashoffset="150" stroke-linecap="round"
-                                    stroke-width="12"></circle>
-                                <defs>
-                                    <linearGradient id="ringGradient" x1="0%" x2="100%" y1="0%" y2="100%">
-                                        <stop class="ring-gradient-stop-1" offset="0%"></stop>
-                                        <stop class="ring-gradient-stop-2" offset="100%"></stop>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <div
-                                class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center">
-                                <span class="display-6 font-black font-headline text-primary-container lh-1">82%</span>
-                                <span
-                                    class="text-xxs text-uppercase font-bold tracking-widest text-on-surface-variant">Overall</span>
-                            </div>
-                        </div>
-                        <div class="row mt-5 g-3">
-                            <div class="col-6 d-flex flex-column">
-                                <div class="d-flex align-items-center gap-2 mb-1">
-                                    <div class="rounded-circle bg-primary-container" style="width: 8px; height: 8px;">
-                                    </div>
-                                    <span
-                                        class="text-xxs font-bold text-uppercase text-on-surface-variant tracking-widest">Steps</span>
-                                </div>
-                                <span class="fs-5 font-bold font-headline">12,482 / 15k</span>
-                            </div>
-                            <div class="col-6 d-flex flex-column">
-                                <div class="d-flex align-items-center gap-2 mb-1">
-                                    <div class="rounded-circle bg-secondary" style="width: 8px; height: 8px;"></div>
-                                    <span
-                                        class="text-xxs font-bold text-uppercase text-on-surface-variant tracking-widest">Minutes</span>
-                                </div>
-                                <span class="fs-5 font-bold font-headline">42 / 60</span>
-                            </div>
+                        <div class="rounded-circle border border-tertiary d-flex align-items-center justify-content-center p-2" style="width: 48px; height: 48px;">
+                            <span class="text-xs font-bold text-tertiary">128%</span>
                         </div>
                     </div>
-                    <!-- Aesthetic Gradient Glow -->
-                    <div class="glow-effect"></div>
                 </div>
             </div>
 
@@ -322,10 +280,12 @@
         </a>
     </nav>
 
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script src="dashboard.js"></script>
+    <script src="../public/JS/charts.js"></script>
 </body>
 
 </html>

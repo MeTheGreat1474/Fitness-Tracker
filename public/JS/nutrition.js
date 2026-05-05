@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const proteinValEl = document.getElementById('protein-val');
     const carbsValEl = document.getElementById('carbs-val');
     const fatsValEl = document.getElementById('fats-val');
+    const macroTotalValEl = document.getElementById('macro-total-val');
     const nutritionBars = document.querySelectorAll('.nutrition-bar-chart > div');
 
     // Initialization
@@ -135,10 +136,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Animate Macros
-        if (proteinValEl) animateValue(proteinValEl, 0, 165, 1500, 'g');
-        if (carbsValEl) animateValue(carbsValEl, 0, 210, 1500, 'g');
-        if (fatsValEl) animateValue(fatsValEl, 0, 58, 1500, 'g');
+        // Avoid hardcoded values by grabbing the actual data and defining a calculation function
+        const macros = data.macros || { protein: 165, carbs: 210, fats: 58 };
+        const calcTotal = (p, c, f) => (p * 4) + (c * 4) + (f * 9);
+
+        // Animate Macros and Total dynamically based on loaded data
+        if (proteinValEl) animateValue(proteinValEl, 0, macros.protein, 1500, 'g');
+        if (carbsValEl) animateValue(carbsValEl, 0, macros.carbs, 1500, 'g');
+        if (fatsValEl) animateValue(fatsValEl, 0, macros.fats, 1500, 'g');
+        if (macroTotalValEl) animateValue(macroTotalValEl, 0, calcTotal(macros.protein, macros.carbs, macros.fats), 1500, 'kcal');
 
         nutritionBars.forEach(bar => {
             const targetHeight = bar.getAttribute('data-target-height');
@@ -162,32 +168,35 @@ document.addEventListener('DOMContentLoaded', async () => {
             activeBtn.classList.add('active');
         }
 
-        const getVal = el => parseInt(el.textContent.replace(/,/g, '').replace('g', '')) || 0;
+        const getVal = el => parseInt(el.textContent.replace(/,/g, '').replace(/[a-zA-Z]/g, '')) || 0;
 
         if (btnDaily) {
             btnDaily.addEventListener('click', () => {
                 setActiveBtn(btnDaily);
-                animateValue(proteinValEl, getVal(proteinValEl), 165, 1000, 'g');
-                animateValue(carbsValEl, getVal(carbsValEl), 210, 1000, 'g');
-                animateValue(fatsValEl, getVal(fatsValEl), 58, 1000, 'g');
+                animateValue(proteinValEl, getVal(proteinValEl), macros.protein, 1000, 'g');
+                animateValue(carbsValEl, getVal(carbsValEl), macros.carbs, 1000, 'g');
+                animateValue(fatsValEl, getVal(fatsValEl), macros.fats, 1000, 'g');
+                if (macroTotalValEl) animateValue(macroTotalValEl, getVal(macroTotalValEl), calcTotal(macros.protein, macros.carbs, macros.fats), 1000, 'kcal');
             });
         }
 
         if (btnWeekly) {
             btnWeekly.addEventListener('click', () => {
                 setActiveBtn(btnWeekly);
-                animateValue(proteinValEl, getVal(proteinValEl), 1155, 1000, 'g');
-                animateValue(carbsValEl, getVal(carbsValEl), 1470, 1000, 'g');
-                animateValue(fatsValEl, getVal(fatsValEl), 406, 1000, 'g');
+                animateValue(proteinValEl, getVal(proteinValEl), macros.protein * 7, 1000, 'g');
+                animateValue(carbsValEl, getVal(carbsValEl), macros.carbs * 7, 1000, 'g');
+                animateValue(fatsValEl, getVal(fatsValEl), macros.fats * 7, 1000, 'g');
+                if (macroTotalValEl) animateValue(macroTotalValEl, getVal(macroTotalValEl), calcTotal(macros.protein * 7, macros.carbs * 7, macros.fats * 7), 1000, 'kcal');
             });
         }
 
         if (btnMonthly) {
             btnMonthly.addEventListener('click', () => {
                 setActiveBtn(btnMonthly);
-                animateValue(proteinValEl, getVal(proteinValEl), 4950, 1000, 'g');
-                animateValue(carbsValEl, getVal(carbsValEl), 6300, 1000, 'g');
-                animateValue(fatsValEl, getVal(fatsValEl), 1740, 1000, 'g');
+                animateValue(proteinValEl, getVal(proteinValEl), macros.protein * 30, 1000, 'g');
+                animateValue(carbsValEl, getVal(carbsValEl), macros.carbs * 30, 1000, 'g');
+                animateValue(fatsValEl, getVal(fatsValEl), macros.fats * 30, 1000, 'g');
+                if (macroTotalValEl) animateValue(macroTotalValEl, getVal(macroTotalValEl), calcTotal(macros.protein * 30, macros.carbs * 30, macros.fats * 30), 1000, 'kcal');
             });
         }
     }
@@ -206,13 +215,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             const ease = 1 - Math.pow(1 - progress, 3);
             const currentVal = Math.floor(ease * (end - start) + start);
 
-            const formattedVal = format === '%' ? `${currentVal}%` : format === 'g' ? `${currentVal}g` : currentVal.toLocaleString();
+            const formattedVal = format === '%' ? `${currentVal}%` : format === 'g' ? `${currentVal}g` : format === 'kcal' ? `${currentVal.toLocaleString()}kcal` : currentVal.toLocaleString();
             obj.textContent = formattedVal;
 
             if (progress < 1) {
                 window.requestAnimationFrame(step);
             } else {
-                obj.textContent = format === '%' ? `${end}%` : format === 'g' ? `${end}g` : end.toLocaleString();
+                obj.textContent = format === '%' ? `${end}%` : format === 'g' ? `${end}g` : format === 'kcal' ? `${end.toLocaleString()}kcal` : end.toLocaleString();
             }
         };
         window.requestAnimationFrame(step);

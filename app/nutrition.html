@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KINETIC | Nutrition</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/CSS/style.css" />
+    <style>
+        .hover-text-white:hover {
+            color: white !important;
+            transition: var(--transition);
+        }
+
+        .hover-text-tertiary:hover {
+            color: var(--tertiary) !important;
+            transition: var(--transition);
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        .nutrition-bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 40px;
+        }
+
+        .nutrition-bar-chart>div {
+            width: 8px;
+            border-radius: 4px;
+            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .filter-btn-group .btn {
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--on-surface-variant);
+            background: transparent;
+            border: 1px solid var(--outline-variant);
+            transition: all 0.2s;
+        }
+
+        .filter-btn-group .btn.active {
+            background-color: var(--primary-container) !important;
+            color: var(--on-primary-container) !important;
+            border-color: var(--primary-container) !important;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-white">
+
+    <!-- TopAppBar -->
+    <header class="fixed-top w-100 z-50 top-bar d-flex justify-content-between align-items-center px-4">
+        <div class="d-flex align-items-center gap-4">
+            <a href="../index.html"
+                class="fs-2 font-black text-primary-container font-headline tracking-tight">KINETIC</a>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
+                <span class="material-symbols-outlined text-white-50 icon"
+                    data-icon="notifications">notifications</span>
+            </button>
+            <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
+                <span class="material-symbols-outlined text-white-50 icon" data-icon="settings">settings</span>
+            </button>
+            <a href="profile.html" class="btn btn-link overflow-hidden border border-outline-variant p-0"
+                style="width: 32px; height: 32px;">
+                <img alt="User profile" class="w-100 h-100"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5SBqkdZoN3VzzcZYYZlnSP0G26h4NKE-NwJU9v0As8ket5DFw0YdipCfnK9me9CDKZQsRCd1LdvQNXIILjE4u_FDaJlbTkJA16VAMosbz9d98Ogw1N6oYmL_NUvyFpd5Pbkz7slr_jbxNWtNllKOVl69xPiVrDYq-NtInT27ruN186Io9fIaX-_Yn0glOskksKq6zcV6NRT0ADbyFgQ_WEtNlw9Mc4_TN9BHqbz9NXGemPaPYECthZ3EkoRTQ9DAviI8RfliF7bs"
+                    class="img-fluid" />
+            </a>
+        </div>
+    </header>
+
+    <!-- SideNavBar (Desktop) -->
+    <aside class="d-none d-md-flex position-fixed start-0 sidebar flex-column pt-4 z-2">
+        <nav class="d-flex flex-column flex-grow-1">
+            <a class="sidebar-link" href="Dashboard.html">
+                <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="sidebar-link" href="Fitness_Tracker.html">
+                <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+                <span>Fitness Log</span>
+            </a>
+            <a class="sidebar-link" href="charts.html">
+                <span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                <span>Analytics</span>
+            </a>
+            <a class="sidebar-link active" href="nutrition.html">
+                <span class="material-symbols-outlined" data-icon="restaurant"
+                    style="font-variation-settings: 'FILL' 1;">restaurant</span>
+                <span>Nutrition</span>
+            </a>
+            <a class="sidebar-link" href="reminder.html">
+                <span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+                <span>Reminders</span>
+            </a>
+            <a class="sidebar-link" href="profile.html">
+                <span class="material-symbols-outlined" data-icon="person">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content pt-5 mt-5 pb-5 px-4">
+        <!-- Hero Section -->
+        <div class="row align-items-end mb-4">
+            <div class="col-12 col-xl-8">
+                <span class="font-bold text-xs text-uppercase tracking-widest text-secondary">Fuel Your
+                    Precision</span>
+                <h1 class="display-2 font-black font-headline tracking-tighter lh-1 fst-italic mt-2 mb-0 text-white">
+                    NUTRITION<br><span class="text-secondary">CHOREOGRAPHY</span></h1>
+            </div>
+            <div class="col-12 col-xl-4 mt-4 mt-xl-0">
+                <!-- Daily burn goal box -->
+                <div class="bg-surface-container-high p-4 rounded-4 position-relative overflow-hidden h-100">
+                    <div class="d-flex justify-content-between align-items-end mb-3">
+                        <span class="text-xs font-bold text-uppercase tracking-widest text-on-surface-variant">Daily
+                            Intake Goal</span>
+                        <span id="burn-goal-text"
+                            class="h4 font-black font-headline text-primary-container mb-0 fst-italic">84%</span>
+                    </div>
+                    <div class="bg-surface-container-highest rounded-pill overflow-hidden mb-4" style="height: 4px;">
+                        <div id="burn-goal-bar" class="bg-secondary h-100" style="width: 0%;"></div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h2 id="target-kcal" class="h3 font-black font-headline mb-0">2,450</h2>
+                            <span
+                                class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Target
+                                Kcal</span>
+                        </div>
+                        <div class="">
+                            <h2 id="remaining-kcal" class="h3 font-black font-headline text-secondary mb-0">380</h2>
+                            <span
+                                class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Remaining</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Nutritional Insights -->
+            <div class="col-12 col-lg-8">
+                <div class="bg-surface-container-low p-4 rounded-4 h-100 position-relative overflow-hidden">
+
+
+                    <div
+                        class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4 gap-3 position-relative z-10">
+                        <h3 class="h5 font-black font-headline text-white fst-italic mb-0">
+                            Nutritional Insights</h3>
+                        <div class="filter-btn-group d-flex gap-2 bg-surface-container p-1 rounded-pill">
+                            <button class="btn btn-sm active" id="btn-daily">DAILY</button>
+                            <button class="btn btn-sm" id="btn-weekly">WEEKLY</button>
+                            <button class="btn btn-sm" id="btn-monthly">MONTHLY</button>
+                        </div>
+                    </div>
+                    <div class="row g-4 position-relative z-10">
+
+                        <div class="col-4 position-relative z-10">
+                            <h2 id="protein-val" class="display-6 font-black font-headline text-primary-container mb-1">
+                                0g</h2>
+                            <span
+                                class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Protein
+                                (High)</span>
+                            <div class="mt-4 nutrition-bar-chart">
+                                <div class="bg-primary-container opacity-50" data-target-height="60%"
+                                    style="height: 0%;"></div>
+                                <div class="bg-primary-container" data-target-height="100%" style="height: 0%;"></div>
+                                <div class="bg-primary-container opacity-75" data-target-height="40%"
+                                    style="height: 0%;"></div>
+                                <div class="bg-primary-container opacity-50" data-target-height="80%"
+                                    style="height: 0%;"></div>
+                                <div class="bg-primary-container opacity-50" data-target-height="30%"
+                                    style="height: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="col-4 position-relative z-10">
+                            <h2 id="carbs-val" class="display-6 font-black font-headline text-secondary mb-1">0g</h2>
+                            <span
+                                class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Carbohydrates</span>
+                            <div class="mt-4 nutrition-bar-chart">
+                                <div class="bg-secondary opacity-50" data-target-height="40%" style="height: 0%;"></div>
+                                <div class="bg-secondary opacity-75" data-target-height="60%" style="height: 0%;"></div>
+                                <div class="bg-secondary" data-target-height="100%" style="height: 0%;"></div>
+                                <div class="bg-secondary opacity-50" data-target-height="50%" style="height: 0%;"></div>
+                                <div class="bg-secondary opacity-50" data-target-height="70%" style="height: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="col-4 position-relative z-10">
+                            <h2 id="fats-val" class="display-6 font-black font-headline text-tertiary mb-1">0g</h2>
+                            <span
+                                class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Healthy
+                                Fats</span>
+                            <div class="mt-4 nutrition-bar-chart">
+                                <div class="bg-tertiary opacity-75" data-target-height="50%" style="height: 0%;"></div>
+                                <div class="bg-tertiary" data-target-height="100%" style="height: 0%;"></div>
+                                <div class="bg-tertiary opacity-50" data-target-height="40%" style="height: 0%;"></div>
+                                <div class="bg-tertiary opacity-75" data-target-height="60%" style="height: 0%;"></div>
+                                <div class="bg-tertiary opacity-50" data-target-height="30%" style="height: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-top border-outline-variant position-relative z-10 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h2 id="macro-total-val" class="display-6 font-black font-headline text-white mb-1">0kcal
+                            </h2>
+                            <span
+                                class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Macro-Based
+                                Calories</span>
+                        </div>
+                        <button class="btn rounded-pill font-bold px-4 py-2" style="background-color: var(--primary-container); color: var(--on-primary-container);" data-bs-toggle="modal" data-bs-target="#quickAddModal">
+                            + Quick Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Precision Calculator -->
+            <div class="col-12 col-lg-4">
+                <div class="bg-surface-container-high p-4 rounded-4 h-100 d-flex flex-column">
+                    <h3 class="h5 font-black font-headline text-white fst-italic mb-4">Precision Calculator</h3>
+
+                    <div class="mb-4">
+                        <label
+                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Activity
+                            Level</label>
+                        <select id="activity-level"
+                            class="form-select bg-surface-container border-0 text-white shadow-none font-body text-sm py-2 px-3 rounded-3"
+                            style="color: white; appearance: auto;">
+                            <option>Elite Athlete (6+ sessions/wk)</option>
+                            <option>Active (4-5 sessions/wk)</option>
+                            <option>Moderate (2-3 sessions/wk)</option>
+                            <option>Light (1-2 sessions/wk)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label
+                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Target
+                            Weight (kg)</label>
+                        <input id="target-weight" type="number"
+                            class="form-control bg-surface-container border-0 text-white shadow-none font-body py-2 px-3 rounded-3"
+                            value="82">
+                    </div>
+
+                    <button id="recalc-tdee-btn"
+                        class="btn w-100 font-black font-headline text-uppercase tracking-widest text-xs py-3 mt-auto rounded-3"
+                        style="background-color: var(--surface-container-highest); color: var(--on-surface); transition: background-color 0.2s;"
+                        onmouseover="this.style.backgroundColor='#3a3d42'"
+                        onmouseout="this.style.backgroundColor='var(--surface-container-highest)'">
+                        Recalculate TDEE
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="row g-4">
+            <!-- Meal Curator -->
+            <div class="col-12 col-lg-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="h3 font-black font-headline text-white fst-italic mb-0">MEAL <span
+                            class="text-primary-container">CURATOR</span></h2>
+                    <div class="d-flex gap-2">
+                        <button
+                            class="btn bg-surface-container-high text-white p-2 rounded-3 border-0 d-flex align-items-center justify-content-center hover-bg-high">
+                            <span class="material-symbols-outlined fs-5" data-icon="filter_list">filter_list</span>
+                        </button>
+                        <button
+                            class="btn bg-surface-container-high text-white p-2 rounded-3 border-0 d-flex align-items-center justify-content-center hover-bg-high">
+                            <span class="material-symbols-outlined fs-5" data-icon="tune">tune</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column gap-3">
+                    <!-- Meal Card 1 -->
+                    <div class="bg-surface-container-low rounded-4 overflow-hidden d-flex flex-column flex-md-row">
+                        <div class="position-relative" style="width: 100%; max-width: 250px; min-height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80"
+                                alt="Salmon Bowl" class="w-100 h-100 object-fit-cover grayscale hover-grayscale"
+                                style="filter: grayscale(100%); transition: 0.3s;"
+                                onmouseover="this.style.filter='grayscale(0%)'"
+                                onmouseout="this.style.filter='grayscale(100%)'">
+                            <div
+                                class="position-absolute top-0 start-0 m-3 bg-surface-container-highest px-2 py-1 rounded text-xxs font-bold text-uppercase tracking-widest text-on-surface">
+                                High Protein
+                            </div>
+                        </div>
+                        <div class="p-4 flex-grow-1 d-flex flex-column justify-content-center position-relative">
+                            <button
+                                class="btn btn-like position-absolute top-0 end-0 m-3 p-1 text-white-50 hover-text-white border-0 shadow-none"
+                                data-meal-id="meal-1">
+                                <span class="material-symbols-outlined like-icon" data-icon="favorite">favorite</span>
+                            </button>
+                            <h3 class="h5 font-bold mb-2">Pacific Salmon & Avocado Bowl</h3>
+                            <p class="text-sm text-on-surface-variant mb-4 pe-4">Wild-caught salmon, quinoa, kale, and
+                                lemon tahini dressing.</p>
+
+                            <div class="d-flex align-items-center justify-content-between mt-auto">
+                                <div class="d-flex gap-4">
+                                    <div>
+                                        <div class="h5 font-black font-headline mb-0">540</div>
+                                        <div
+                                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
+                                            Kcal</div>
+                                    </div>
+                                    <div class="border-start border-outline-variant ps-4">
+                                        <div class="h5 font-black font-headline mb-0">42g</div>
+                                        <div
+                                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
+                                            Protein</div>
+                                    </div>
+                                    <div class="border-start border-outline-variant ps-4">
+                                        <div class="h5 font-black font-headline mb-0">18g</div>
+                                        <div
+                                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
+                                            Fats</div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="btn bg-primary-container text-on-primary-container rounded-circle d-flex align-items-center justify-content-center p-0 shadow-none border-0 mt-3 mt-sm-0"
+                                    style="width: 40px; height: 40px; transition: 0.2s;"
+                                    onmouseover="this.style.transform='scale(1.1)'"
+                                    onmouseout="this.style.transform='scale(1)'">
+                                    <span class="material-symbols-outlined" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meal Card 2 -->
+                    <div class="bg-surface-container-low rounded-4 overflow-hidden d-flex flex-column flex-md-row">
+                        <div class="position-relative" style="width: 100%; max-width: 250px; min-height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80"
+                                alt="Hummus Plate" class="w-100 h-100 object-fit-cover grayscale hover-grayscale"
+                                style="filter: grayscale(100%); transition: 0.3s;"
+                                onmouseover="this.style.filter='grayscale(0%)'"
+                                onmouseout="this.style.filter='grayscale(100%)'">
+                            <div
+                                class="position-absolute top-0 start-0 m-3 bg-surface-container-highest px-2 py-1 rounded text-xxs font-bold text-uppercase tracking-widest text-on-surface">
+                                Plant Based
+                            </div>
+                        </div>
+                        <div class="p-4 flex-grow-1 d-flex flex-column justify-content-center position-relative">
+                            <button
+                                class="btn btn-like position-absolute top-0 end-0 m-3 p-1 text-tertiary border-0 shadow-none hover-text-white"
+                                data-meal-id="meal-2">
+                                <span class="material-symbols-outlined like-icon"
+                                    style="font-variation-settings: 'FILL' 1;" data-icon="favorite">favorite</span>
+                            </button>
+                            <h3 class="h5 font-bold mb-2">Mediterranean Hummus Power Plate</h3>
+                            <p class="text-sm text-on-surface-variant mb-4 pe-4">House-made hummus, olives, cherry
+                                tomatoes, and roasted chickpeas.</p>
+
+                            <div class="d-flex align-items-center justify-content-between mt-auto">
+                                <div class="d-flex gap-4">
+                                    <div>
+                                        <div class="h5 font-black font-headline mb-0">410</div>
+                                        <div
+                                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
+                                            Kcal</div>
+                                    </div>
+                                    <div class="border-start border-outline-variant ps-4">
+                                        <div class="h5 font-black font-headline mb-0">14g</div>
+                                        <div
+                                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
+                                            Protein</div>
+                                    </div>
+                                    <div class="border-start border-outline-variant ps-4">
+                                        <div class="h5 font-black font-headline mb-0">12g</div>
+                                        <div
+                                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
+                                            Fats</div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="btn bg-primary-container text-on-primary-container rounded-circle d-flex align-items-center justify-content-center p-0 shadow-none border-0 mt-3 mt-sm-0"
+                                    style="width: 40px; height: 40px; transition: 0.2s;"
+                                    onmouseover="this.style.transform='scale(1.1)'"
+                                    onmouseout="this.style.transform='scale(1)'">
+                                    <span class="material-symbols-outlined" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elite Favorites -->
+            <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+                <div class="bg-surface-container-low p-4 rounded-4 h-100 d-flex flex-column">
+                    <h3 class="h5 font-black font-headline text-white fst-italic mb-4 text-uppercase">Elite <span
+                            class="text-secondary">Favorites</span></h3>
+
+                    <div class="d-flex flex-column gap-4 flex-grow-1">
+                        <!-- Favorite 1 -->
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?w=100&q=80"
+                                alt="Berry Fuel" class="rounded-3 object-fit-cover" style="width: 56px; height: 56px;">
+                            <div class="flex-grow-1">
+                                <h4 class="font-bold text-sm mb-1">Post-Workout Berry Fuel</h4>
+                                <span
+                                    class="text-xxs font-bold text-on-surface-variant text-uppercase tracking-widest">320
+                                    Kcal</span>
+                            </div>
+                            <span class="material-symbols-outlined text-tertiary fs-6 cursor-pointer btn-like like-icon"
+                                data-meal-id="fav-1" style="font-variation-settings: 'FILL' 1;"
+                                data-icon="favorite">favorite</span>
+                        </div>
+
+                        <!-- Favorite 2 -->
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=100&q=80"
+                                alt="Chicken" class="rounded-3 object-fit-cover" style="width: 56px; height: 56px;">
+                            <div class="flex-grow-1">
+                                <h4 class="font-bold text-sm mb-1">Lemon Zest Asparagus Chicken</h4>
+                                <span
+                                    class="text-xxs font-bold text-on-surface-variant text-uppercase tracking-widest">450
+                                    Kcal</span>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-white-50 fs-6 hover-text-tertiary cursor-pointer btn-like like-icon"
+                                data-meal-id="fav-2" data-icon="favorite">favorite</span>
+                        </div>
+
+                        <!-- Favorite 3 -->
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=100&q=80"
+                                alt="Ribeye" class="rounded-3 object-fit-cover" style="width: 56px; height: 56px;">
+                            <div class="flex-grow-1">
+                                <h4 class="font-bold text-sm mb-1">Grass-Fed Ribeye (250g)</h4>
+                                <span
+                                    class="text-xxs font-bold text-on-surface-variant text-uppercase tracking-widest">680
+                                    Kcal</span>
+                            </div>
+                            <span class="material-symbols-outlined text-tertiary fs-6 cursor-pointer btn-like like-icon"
+                                data-meal-id="fav-3" style="font-variation-settings: 'FILL' 1;"
+                                data-icon="favorite">favorite</span>
+                        </div>
+                    </div>
+
+                    <a href="#"
+                        class="text-xxs font-bold text-on-surface-variant text-uppercase tracking-widest text-decoration-none mt-5 d-flex align-items-center gap-1 hover-text-white transition">
+                        View All Collection <span class="material-symbols-outlined fs-6"
+                            data-icon="chevron_right">chevron_right</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FAB for Mobile -->
+    <button
+        class="d-md-none position-fixed bg-primary-container text-on-primary-container rounded-circle d-flex align-items-center justify-content-center border-0 z-3"
+        style="bottom: 5.5rem; right: 1.5rem; width: 3.5rem; height: 3.5rem; box-shadow: 0 0 20px rgba(209,252,0,0.3);">
+        <span class="material-symbols-outlined" data-icon="add">add</span>
+    </button>
+
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav
+        class="d-md-none position-fixed bottom-0 w-100 bottom-nav d-flex justify-content-around align-items-center px-4 z-3">
+        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="Dashboard.html">
+            <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">Home</span>
+        </a>
+        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="Fitness_Tracker.html">
+            <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">Log</span>
+        </a>
+        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="charts.html">
+            <span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">Data</span>
+        </a>
+        <a class="d-flex flex-column align-items-center gap-1 text-primary-container text-decoration-none"
+            href="nutrition.html">
+            <span class="material-symbols-outlined" data-icon="restaurant"
+                style="font-variation-settings: 'FILL' 1;">restaurant</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">Diet</span>
+        </a>
+        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="profile.html">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="text-xxs font-bold text-uppercase tracking-tighter">User</span>
+        </a>
+    </nav>
+
+    <!-- Quick Add Modal -->
+    <div class="modal fade" id="quickAddModal" tabindex="-1" aria-labelledby="quickAddModalLabel" aria-hidden="true" data-bs-theme="dark">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-surface-container-high border-outline-variant">
+                <div class="modal-header border-outline-variant">
+                    <h5 class="modal-title font-black font-headline text-white fst-italic" id="quickAddModalLabel">QUICK ADD MACROS</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-sm text-on-surface-variant mb-4">Add your recently consumed macros to your daily totals.</p>
+                    <div class="mb-3">
+                        <label class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Protein (g)</label>
+                        <input type="number" id="quick-add-protein" class="form-control bg-surface-container border-outline-variant text-white" placeholder="0" min="0">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Carbohydrates (g)</label>
+                        <input type="number" id="quick-add-carbs" class="form-control bg-surface-container border-outline-variant text-white" placeholder="0" min="0">
+                    </div>
+                    <div class="mb-4">
+                        <label class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Fats (g)</label>
+                        <input type="number" id="quick-add-fats" class="form-control bg-surface-container border-outline-variant text-white" placeholder="0" min="0">
+                    </div>
+                    <button id="btn-save-quick-add" class="btn w-100 py-3 font-bold tracking-widest" style="background-color: var(--primary-container); color: var(--on-primary-container);">
+                        ADD TO TOTALS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/JS/nutrition.js"></script>
+</body>
+
+</html>

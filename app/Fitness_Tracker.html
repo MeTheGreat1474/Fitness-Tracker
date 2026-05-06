@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KINETIC | FITNESS TRACKER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../public/CSS/style.css" />
+
+    
+</head>
+
+<body class="bg-surface text-white">
+    <!-- TopAppBar -->
+    <header class="fixed-top w-100 z-50 top-bar d-flex justify-content-between align-items-center px-4">
+        <div class="d-flex align-items-center gap-4">
+            <a href="../index.html"
+                class="fs-2 font-black text-primary-container font-headline tracking-tight">KINETIC</a>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
+                <span class="material-symbols-outlined text-white-50 icon"
+                    data-icon="notifications">notifications</span>
+            </button>
+            <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
+                <span class="material-symbols-outlined text-white-50 icon" data-icon="settings">settings</span>
+            </button>
+            <a href="profile.html" class="btn btn-link overflow-hidden border border-outline-variant p-0"
+                style="width: 32px; height: 32px;">
+                <img alt="User profile" class="w-100 h-100"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5SBqkdZoN3VzzcZYYZlnSP0G26h4NKE-NwJU9v0As8ket5DFw0YdipCfnK9me9CDKZQsRCd1LdvQNXIILjE4u_FDaJlbTkJA16VAMosbz9d98Ogw1N6oYmL_NUvyFpd5Pbkz7slr_jbxNWtNllKOVl69xPiVrDYq-NtInT27ruN186Io9fIaX-_Yn0glOskksKq6zcV6NRT0ADbyFgQ_WEtNlw9Mc4_TN9BHqbz9NXGemPaPYECthZ3EkoRTQ9DAviI8RfliF7bs"
+                    class="img-fluid" />
+            </a>
+        </div>
+    </header>
+
+    <!-- SideNavBar (Desktop) -->
+    <aside class="d-none d-md-flex position-fixed start-0 sidebar flex-column pt-4 z-2">
+        <nav class="d-flex flex-column flex-grow-1">
+            <a class="sidebar-link" href="Dashboard.html">
+                <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="sidebar-link active" href="Fitness_Tracker.html">
+                <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
+                <span>Fitness Log</span>
+            </a>
+            <a class="sidebar-link" href="charts.html">
+                <span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                <span>Analytics</span>
+            </a>
+            <a class="sidebar-link" href="nutrition.html">
+                <span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+                <span>Nutrition</span>
+            </a>
+            <a class="sidebar-link" href="reminder.html">
+                <span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+                <span>Reminders</span>
+            </a>
+            <a class="sidebar-link" href="profile.html">
+                <span class="material-symbols-outlined" data-icon="person">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+        <div class="p-2 mb-4">
+            <button class="btn-log w-100">
+                <span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                <span class="text-xs">Log Workout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content pt-5 mt-5 pb-5 px-4">
+
+        <!-- Page Header -->
+        <header class="mb-5 fade-up">
+            <div class="d-flex align-items-end gap-3 mb-2">
+                <span class="font-bold text-xs text-uppercase tracking-widest text-primary-container">Log Your Gains</span>
+                <div class="flex-grow-1 bg-outline-variant opacity-25 mb-2" style="height: 1px;"></div>
+            </div>
+            <h1 class="display-1 font-black font-headline tracking-tighter lh-1 fst-italic">FITNESS <span
+                    class="text-primary-container">TRACKER</span></h1>
+            <p class="fs-5 mt-3 text-on-surface-variant font-bold" style="max-width:38rem;">
+                Log workouts, track daily steps, and manage your activity history. All data uses the Metric System.
+            </p>
+        </header>
+
+        <!-- ── STAT CARDS ── -->
+        <div class="row g-3 mb-4 fade-up delay-1">
+            <div class="col-6 col-md-3">
+                <div class="stat-card h-100">
+                    <div class="stat-label">Workouts logged</div>
+                    <div class="stat-value text-lime" id="stat-total">0</div>
+                    <div class="stat-sub">All time</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card h-100">
+                    <div class="stat-label">Steps today</div>
+                    <div class="stat-value" id="stat-steps">0</div>
+                    <div class="stat-sub">/ 10,000 goal</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card h-100">
+                    <div class="stat-label">Total minutes</div>
+                    <div class="stat-value" id="stat-minutes">0</div>
+                    <div class="stat-sub">This week</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="stat-card h-100">
+                    <div class="stat-label">Avg. duration</div>
+                    <div class="stat-value" id="stat-avg">—</div>
+                    <div class="stat-sub">Minutes / session</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── MAIN GRID ── -->
+        <div class="row g-3">
+
+            <!-- ===== LEFT COLUMN ===== -->
+            <div class="col-12 col-lg-5 d-flex flex-column gap-3">
+
+                <!-- FEATURE 21: Log Workouts Form -->
+                <div class="glass-card p-4 fade-up delay-2">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-lime" style="font-size:1.1rem;">fitness_center</span>
+                        <div class="section-label mb-0">Data Ingestion — Log Workout</div>
+                    </div>
+
+                    <div class="d-flex flex-column gap-3">
+                        <!-- Activity Type -->
+                        <div>
+                            <label class="k-label">Activity Type</label>
+                            <select class="k-select" id="inp-type">
+                                <option value="">— Select activity —</option>
+                                <option value="Basketball">Basketball</option>
+                                <option value="Gym – Strength">Gym – Strength</option>
+                                <option value="Gym – Cardio">Gym – Cardio</option>
+                                <option value="Running">Running</option>
+                                <option value="Cycling">Cycling</option>
+                                <option value="Swimming">Swimming</option>
+                                <option value="Football">Football</option>
+                                <option value="Badminton">Badminton</option>
+                                <option value="HIIT">HIIT</option>
+                                <option value="Yoga">Yoga</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Duration & Distance -->
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="k-label">Duration (min)</label>
+                                <input class="k-input" type="number" id="inp-duration" placeholder="e.g. 60" min="1" max="600">
+                            </div>
+                            <div class="col-6">
+                                <label class="k-label">Distance (km)</label>
+                                <input class="k-input" type="number" id="inp-distance" placeholder="e.g. 5.0" min="0" step="0.1">
+                            </div>
+                        </div>
+
+                        <!-- Date & Time -->
+                        <div class="row g-2">
+                            <div class="col-7">
+                                <label class="k-label">Date</label>
+                                <input class="k-input" type="date" id="inp-date">
+                            </div>
+                            <div class="col-5">
+                                <label class="k-label">Time</label>
+                                <input class="k-input" type="time" id="inp-time">
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div>
+                            <label class="k-label">Notes (optional)</label>
+                            <textarea class="k-textarea" id="inp-notes" placeholder="e.g. Felt strong, personal best on bench press"></textarea>
+                        </div>
+
+                        <button class="btn-kinetic w-100 justify-content-center" onclick="logWorkout()">
+                            <span class="material-symbols-outlined" style="font-size:1rem;">add_circle</span>
+                            LOG PERFORMANCE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FEATURE 22: Steps Tracker -->
+                <div class="glass-card p-4 fade-up delay-3">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-lime" style="font-size:1.1rem;">directions_walk</span>
+                        <div class="section-label mb-0">Steps Tracker</div>
+                    </div>
+
+                    <!-- Steps display -->
+                    <div class="d-flex justify-content-between align-items-baseline mb-2">
+                        <div>
+                            <span class="font-headline font-black" style="font-size:2rem;letter-spacing:-0.03em;" id="display-steps">0</span>
+                            <span style="color:var(--muted);font-size:0.75rem;margin-left:0.3rem;">/ 10,000 steps</span>
+                        </div>
+                        <span class="font-headline font-black text-lime" style="font-size:1.2rem;" id="display-pct">0%</span>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="steps-track mb-3">
+                        <div class="steps-fill" id="steps-bar" style="width:0%"></div>
+                    </div>
+
+                    <!-- Milestone markers -->
+                    <div class="d-flex justify-content-between mb-3" style="font-size:0.58rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">
+                        <span>0</span>
+                        <span>2,500</span>
+                        <span>5,000</span>
+                        <span>7,500</span>
+                        <span>10k ✓</span>
+                    </div>
+
+                    <!-- Input -->
+                    <label class="k-label">Log today's step count</label>
+                    <div class="d-flex gap-2">
+                        <input class="k-input" type="number" id="inp-steps" placeholder="e.g. 8500" min="0" max="99999" style="flex:1;">
+                        <button class="btn-kinetic" onclick="updateSteps()" style="white-space:nowrap;">UPDATE</button>
+                    </div>
+
+                    <!-- Status message -->
+                    <div id="steps-status" class="mt-2" style="font-size:0.7rem;color:var(--muted);min-height:1rem;"></div>
+                </div>
+
+            </div><!-- /col left -->
+
+            <!-- ===== RIGHT COLUMN ===== -->
+            <div class="col-12 col-lg-7 d-flex flex-column gap-3">
+
+                <!-- Weekly bar chart -->
+                <div class="glass-card p-4 fade-up delay-2">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined text-lime" style="font-size:1.1rem;">bar_chart</span>
+                            <div class="section-label mb-0">Weekly Activity</div>
+                        </div>
+                        <span class="k-badge k-badge-lime" id="week-total-badge">0 min this week</span>
+                    </div>
+                    <div class="chart-bars" id="weekly-chart">
+                        <!-- Generated by JS -->
+                    </div>
+                    <div class="d-flex gap-2 mt-1" id="weekly-labels" style="padding:0 2px;">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+
+                <!-- FEATURE 23 & 24: Activity History + Manage -->
+                <div class="glass-card p-4 fade-up delay-3" style="flex:1;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined text-lime" style="font-size:1.1rem;">history</span>
+                            <div class="section-label mb-0">Historical Metrics</div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="k-badge k-badge-amber" id="entry-count-badge">0 entries</span>
+                            <!-- Filter -->
+                            <select class="k-select" id="filter-type" onchange="renderTable()" style="width:auto;padding:0.3rem 0.6rem;font-size:0.68rem;">
+                                <option value="all">All Types</option>
+                                <option value="Basketball">Basketball</option>
+                                <option value="Gym – Strength">Gym – Strength</option>
+                                <option value="Gym – Cardio">Gym – Cardio</option>
+                                <option value="Running">Running</option>
+                                <option value="Cycling">Cycling</option>
+                                <option value="Swimming">Swimming</option>
+                                <option value="Football">Football</option>
+                                <option value="Badminton">Badminton</option>
+                                <option value="HIIT">HIIT</option>
+                                <option value="Yoga">Yoga</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="k-table">
+                            <thead>
+                                <tr>
+                                    <th>Date &amp; Time</th>
+                                    <th>Activity</th>
+                                    <th>Duration</th>
+                                    <th>Distance</th>
+                                    <th>Notes</th>
+                                    <th style="text-align:right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="empty-state" class="empty-state" style="display:none;">
+                        <span class="material-symbols-outlined">sports_score</span>
+                        <div style="font-size:0.8rem;font-weight:700;">No activity logged yet.</div>
+                        <div style="font-size:0.7rem;margin-top:0.25rem;">Use the form on the left to log your first workout.</div>
+                    </div>
+                </div>
+
+            </div><!-- /col right -->
+        </div><!-- /row -->
+    </main><!-- /main-content -->
+
+    <!-- ░░ EDIT MODAL ░░ -->
+    <div class="modal-overlay" id="edit-modal" onclick="closeModal(event)">
+        <div class="modal-box">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="section-label mb-0">Edit Entry</div>
+                <button class="btn-outline-k" onclick="closeEditModal()">✕ Close</button>
+            </div>
+            <input type="hidden" id="edit-id">
+            <div class="d-flex flex-column gap-3">
+                <div>
+                    <label class="k-label">Activity Type</label>
+                    <select class="k-select" id="edit-type">
+                        <option value="Basketball">Basketball</option>
+                        <option value="Gym – Strength">Gym – Strength</option>
+                        <option value="Gym – Cardio">Gym – Cardio</option>
+                        <option value="Running">Running</option>
+                        <option value="Cycling">Cycling</option>
+                        <option value="Swimming">Swimming</option>
+                        <option value="Football">Football</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="HIIT">HIIT</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <label class="k-label">Duration (min)</label>
+                        <input class="k-input" type="number" id="edit-duration" min="1">
+                    </div>
+                    <div class="col-6">
+                        <label class="k-label">Distance (km)</label>
+                        <input class="k-input" type="number" id="edit-distance" min="0" step="0.1">
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-7">
+                        <label class="k-label">Date</label>
+                        <input class="k-input" type="date" id="edit-date">
+                    </div>
+                    <div class="col-5">
+                        <label class="k-label">Time</label>
+                        <input class="k-input" type="time" id="edit-time">
+                    </div>
+                </div>
+                <div>
+                    <label class="k-label">Notes</label>
+                    <textarea class="k-textarea" id="edit-notes"></textarea>
+                </div>
+                <button class="btn-kinetic w-100 justify-content-center" onclick="saveEdit()">
+                    <span class="material-symbols-outlined" style="font-size:1rem;">save</span>
+                    SAVE CHANGES
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ░░ TOAST ░░ -->
+    <div id="k-toast">✓ &nbsp;Logged Successfully</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        /* ============================================================
+           KINETIC FITNESS TRACKER — vanilla JS data layer
+           All data stored in memory (SQL/backend integration later)
+           ============================================================ */
+
+        // ── Activity type colours ──
+        const TYPE_COLORS = {
+            'Basketball'    : '#ccff00',
+            'Gym – Strength': '#00e5ff',
+            'Gym – Cardio'  : '#00c896',
+            'Running'       : '#ff9f43',
+            'Cycling'       : '#a29bfe',
+            'Swimming'      : '#74b9ff',
+            'Football'      : '#55efc4',
+            'Badminton'     : '#fd79a8',
+            'HIIT'          : '#ff7675',
+            'Yoga'          : '#b2bec3',
+            'Other'         : '#636e72',
+        };
+
+        // ── In-memory data store ──
+        let logs  = [];   // Array of workout log objects
+        let steps = 0;    // Today's steps (integer)
+        let nextId = 1;
+
+        // ── Set default date/time inputs to today ──
+        (function initDefaults() {
+            const now  = new Date();
+            const date = now.toISOString().split('T')[0];
+            const time = now.toTimeString().slice(0,5);
+            document.getElementById('inp-date').value = date;
+            document.getElementById('inp-time').value = time;
+            buildWeeklyChart();
+            renderTable();
+            updateStats();
+        })();
+
+        /* ──────────────────────────────────────────────
+           FEATURE 21 · Log Workout
+        ────────────────────────────────────────────── */
+        function logWorkout() {
+            const type     = document.getElementById('inp-type').value.trim();
+            const duration = parseInt(document.getElementById('inp-duration').value);
+            const distance = parseFloat(document.getElementById('inp-distance').value) || 0;
+            const date     = document.getElementById('inp-date').value;
+            const time     = document.getElementById('inp-time').value;
+            const notes    = document.getElementById('inp-notes').value.trim();
+
+            // Validation
+            if (!type)        { shakeInput('inp-type');     return showToast('Select an activity type.', true); }
+            if (!duration || duration < 1) { shakeInput('inp-duration'); return showToast('Enter a valid duration.', true); }
+            if (!date)        { shakeInput('inp-date');     return showToast('Pick a date.', true); }
+
+            const entry = { id: nextId++, type, duration, distance, date, time, notes };
+            logs.unshift(entry);   // newest first
+
+            // Reset form (keep date/time)
+            document.getElementById('inp-type').value     = '';
+            document.getElementById('inp-duration').value = '';
+            document.getElementById('inp-distance').value = '';
+            document.getElementById('inp-notes').value    = '';
+
+            renderTable();
+            updateStats();
+            buildWeeklyChart();
+            showToast('Performance logged!');
+        }
+
+        /* ──────────────────────────────────────────────
+           FEATURE 22 · Steps Tracker
+        ────────────────────────────────────────────── */
+        function updateSteps() {
+            const val = parseInt(document.getElementById('inp-steps').value);
+            if (isNaN(val) || val < 0) {
+                shakeInput('inp-steps');
+                return showToast('Enter a valid step count.', true);
+            }
+            steps = Math.min(val, 99999);
+            document.getElementById('inp-steps').value = '';
+            renderSteps();
+            updateStats();
+            showToast('Steps updated!');
+        }
+
+        function renderSteps() {
+            const pct = Math.min((steps / 10000) * 100, 100);
+            document.getElementById('display-steps').textContent = steps.toLocaleString();
+            document.getElementById('display-pct').textContent   = Math.round(pct) + '%';
+            document.getElementById('steps-bar').style.width     = pct + '%';
+
+            const statusEl = document.getElementById('steps-status');
+            if (steps === 0) {
+                statusEl.textContent = '';
+            } else if (steps < 3000) {
+                statusEl.textContent = '🔴 Keep moving — you\'ve got this!';
+            } else if (steps < 7000) {
+                statusEl.textContent = '🟡 Good progress. Push toward 10k!';
+            } else if (steps < 10000) {
+                statusEl.textContent = '🟢 Almost there — great effort!';
+            } else {
+                statusEl.style.color = 'var(--lime)';
+                statusEl.textContent = '⚡ Goal achieved! Elite performance.';
+            }
+        }
+
+        /* ──────────────────────────────────────────────
+           FEATURE 23 · Activity History table
+        ────────────────────────────────────────────── */
+        function renderTable() {
+            const filterVal = document.getElementById('filter-type').value;
+            const filtered  = filterVal === 'all' ? logs : logs.filter(l => l.type === filterVal);
+            const tbody     = document.getElementById('history-tbody');
+            const empty     = document.getElementById('empty-state');
+
+            document.getElementById('entry-count-badge').textContent =
+                filtered.length + (filtered.length === 1 ? ' entry' : ' entries');
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+
+            tbody.innerHTML = filtered.map(entry => {
+                const color     = TYPE_COLORS[entry.type] || '#636e72';
+                const dateLabel = formatDate(entry.date);
+                const distLabel = entry.distance > 0 ? entry.distance.toFixed(1) + ' km' : '—';
+                const notesShort= entry.notes.length > 30 ? entry.notes.slice(0,30) + '…' : (entry.notes || '—');
+                return `
+                <tr>
+                    <td>
+                        <div style="font-size:0.78rem;font-weight:700;">${dateLabel}</div>
+                        <div style="font-size:0.65rem;color:var(--muted);">${entry.time || '—'}</div>
+                    </td>
+                    <td>
+                        <span class="activity-pill" style="color:${color};">${entry.type}</span>
+                    </td>
+                    <td>
+                        <span style="font-weight:700;">${entry.duration}</span>
+                        <span style="color:var(--muted);font-size:0.7rem;"> min</span>
+                    </td>
+                    <td style="color:var(--muted);">${distLabel}</td>
+                    <td style="color:var(--muted);font-size:0.72rem;max-width:120px;">${notesShort}</td>
+                    <td style="text-align:right;white-space:nowrap;">
+                        <button class="btn-outline-k me-1" onclick="openEditModal(${entry.id})">Edit</button>
+                        <button class="btn-danger-k" onclick="deleteEntry(${entry.id})">Delete</button>
+                    </td>
+                </tr>`;
+            }).join('');
+        }
+
+        /* ──────────────────────────────────────────────
+           FEATURE 24 · Manage Fitness Logs
+        ────────────────────────────────────────────── */
+        function openEditModal(id) {
+            const entry = logs.find(l => l.id === id);
+            if (!entry) return;
+            document.getElementById('edit-id').value       = id;
+            document.getElementById('edit-type').value     = entry.type;
+            document.getElementById('edit-duration').value = entry.duration;
+            document.getElementById('edit-distance').value = entry.distance || '';
+            document.getElementById('edit-date').value     = entry.date;
+            document.getElementById('edit-time').value     = entry.time;
+            document.getElementById('edit-notes').value    = entry.notes;
+            document.getElementById('edit-modal').classList.add('show');
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.remove('show');
+        }
+
+        function closeModal(e) {
+            if (e.target === document.getElementById('edit-modal')) closeEditModal();
+        }
+
+        function saveEdit() {
+            const id       = parseInt(document.getElementById('edit-id').value);
+            const duration = parseInt(document.getElementById('edit-duration').value);
+            if (!duration || duration < 1) {
+                shakeInput('edit-duration');
+                return showToast('Enter a valid duration.', true);
+            }
+            const idx = logs.findIndex(l => l.id === id);
+            if (idx === -1) return;
+            logs[idx] = {
+                ...logs[idx],
+                type    : document.getElementById('edit-type').value,
+                duration,
+                distance: parseFloat(document.getElementById('edit-distance').value) || 0,
+                date    : document.getElementById('edit-date').value,
+                time    : document.getElementById('edit-time').value,
+                notes   : document.getElementById('edit-notes').value.trim(),
+            };
+            closeEditModal();
+            renderTable();
+            updateStats();
+            buildWeeklyChart();
+            showToast('Entry updated!');
+        }
+
+        function deleteEntry(id) {
+            if (!confirm('Delete this activity log? This cannot be undone.')) return;
+            logs = logs.filter(l => l.id !== id);
+            renderTable();
+            updateStats();
+            buildWeeklyChart();
+            showToast('Entry deleted.');
+        }
+
+        /* ──────────────────────────────────────────────
+           STAT CARDS
+        ────────────────────────────────────────────── */
+        function updateStats() {
+            // Total workouts
+            document.getElementById('stat-total').textContent = logs.length;
+
+            // Steps
+            document.getElementById('stat-steps').textContent  = steps.toLocaleString();
+            document.getElementById('stat-steps').style.color  = steps >= 10000 ? 'var(--lime)' : 'var(--on-surface)';
+
+            // Minutes this week
+            const weekMins = getThisWeekLogs().reduce((s, l) => s + l.duration, 0);
+            document.getElementById('stat-minutes').textContent = weekMins;
+
+            // Avg duration
+            if (logs.length === 0) {
+                document.getElementById('stat-avg').textContent = '—';
+            } else {
+                const avg = logs.reduce((s,l) => s + l.duration, 0) / logs.length;
+                document.getElementById('stat-avg').textContent = Math.round(avg);
+            }
+        }
+
+        /* ──────────────────────────────────────────────
+           WEEKLY CHART
+        ────────────────────────────────────────────── */
+        function buildWeeklyChart() {
+            const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+            // Get the Monday of the current week
+            const today = new Date();
+            const dow   = today.getDay(); // 0=Sun
+            const monday= new Date(today);
+            monday.setDate(today.getDate() - ((dow + 6) % 7));
+
+            // Sum duration per day
+            const dayMins = days.map((_, i) => {
+                const d = new Date(monday);
+                d.setDate(monday.getDate() + i);
+                const ds = d.toISOString().split('T')[0];
+                return logs.filter(l => l.date === ds).reduce((s,l) => s + l.duration, 0);
+            });
+
+            const maxMins  = Math.max(...dayMins, 1);
+            const todayIdx = (today.getDay() + 6) % 7; // convert Sun=0 to Mon=0
+
+            const chart  = document.getElementById('weekly-chart');
+            const labels = document.getElementById('weekly-labels');
+
+            chart.innerHTML = dayMins.map((m, i) => {
+                const h      = Math.max((m / maxMins) * 100, m > 0 ? 8 : 5);
+                const cls    = i === todayIdx ? 'active' : (m > 0 ? 'semi' : '');
+                const tip    = m > 0 ? `${m} min` : '';
+                return `
+                <div class="chart-bar-wrap" title="${days[i]}: ${tip || 'rest day'}">
+                    <div class="chart-bar ${cls}" style="height:${h}%;min-height:4px;"></div>
+                </div>`;
+            }).join('');
+
+            labels.innerHTML = days.map((d,i) => {
+                const active = i === todayIdx ? 'color:var(--lime);' : '';
+                return `<div style="flex:1;text-align:center;font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);${active}">${d}</div>`;
+            }).join('');
+
+            const weekTotal = dayMins.reduce((s,m) => s + m, 0);
+            document.getElementById('week-total-badge').textContent = weekTotal + ' min this week';
+        }
+
+        /* ──────────────────────────────────────────────
+           HELPERS
+        ────────────────────────────────────────────── */
+        function getThisWeekLogs() {
+            const today  = new Date();
+            const dow    = today.getDay();
+            const monday = new Date(today);
+            monday.setDate(today.getDate() - ((dow + 6) % 7));
+            monday.setHours(0,0,0,0);
+            return logs.filter(l => new Date(l.date) >= monday);
+        }
+
+        function formatDate(ds) {
+            if (!ds) return '—';
+            const d = new Date(ds + 'T00:00:00');
+            return d.toLocaleDateString('en-MY', { day:'2-digit', month:'short', year:'numeric' });
+        }
+
+        function showToast(msg, isError=false) {
+            const t = document.getElementById('k-toast');
+            t.textContent = (isError ? '✕  ' : '✓  ') + msg;
+            t.style.background = isError ? '#ff4b4b' : 'var(--lime)';
+            t.style.color      = isError ? '#fff'    : '#000';
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2800);
+        }
+
+        function shakeInput(id) {
+            const el = document.getElementById(id);
+            el.style.borderColor = '#ff4b4b';
+            setTimeout(() => { el.style.borderColor = ''; }, 1200);
+        }
+    </script>
+
+</body>
+</html>

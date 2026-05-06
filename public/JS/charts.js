@@ -324,4 +324,91 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // ==========================================
+    // CALORIC INTAKE ENTRY INTERACTIVITY
+    // ==========================================
+
+    // Meal type toggle
+    const mealTypeBtns = document.querySelectorAll('.meal-type-btn');
+    mealTypeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            mealTypeBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    // Quick add buttons
+    const quickAddBtns = document.querySelectorAll('.quick-add-btn');
+    const foodInput = document.getElementById('food-item-name');
+    const calorieInput = document.getElementById('calorie-amount');
+
+    quickAddBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const name = btn.querySelector('.flex-grow-1').textContent.trim();
+            const kcalText = btn.querySelector('.text-on-surface-variant').textContent.trim();
+            const kcal = parseInt(kcalText);
+            if (foodInput) foodInput.value = name;
+            if (calorieInput) calorieInput.value = kcal;
+        });
+    });
+
+    // Meal icon map
+    const mealIcons = {
+        breakfast: 'egg_alt',
+        lunch: 'lunch_dining',
+        dinner: 'dinner_dining',
+        snack: 'cookie'
+    };
+
+    // Add entry
+    const btnAddEntry = document.getElementById('btn-add-entry');
+    const logList = document.getElementById('todays-log-list');
+    const todayTotal = document.getElementById('today-total');
+
+    if (btnAddEntry) {
+        btnAddEntry.addEventListener('click', () => {
+            const name = foodInput ? foodInput.value.trim() : '';
+            const kcal = calorieInput ? parseInt(calorieInput.value) : 0;
+            const activeMeal = document.querySelector('.meal-type-btn.active');
+            const mealType = activeMeal ? activeMeal.dataset.meal : 'snack';
+
+            if (!name || !kcal) return;
+
+            const icon = mealIcons[mealType] || 'restaurant';
+            const mealLabel = mealType.charAt(0).toUpperCase() + mealType.slice(1);
+
+            const entry = document.createElement('div');
+            entry.className = 'd-flex align-items-center justify-content-between py-2 border-bottom';
+            entry.style.borderColor = 'rgba(255,255,255,0.05)';
+            entry.style.animation = 'fadeUp 0.3s ease both';
+            entry.innerHTML = `
+                <div class="d-flex align-items-center gap-2">
+                    <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: rgba(209,252,0,0.12);">
+                        <span class="material-symbols-outlined text-primary-container" style="font-size: 14px;">${icon}</span>
+                    </span>
+                    <div>
+                        <span class="d-block font-bold text-white" style="font-size: 0.78rem;">${name}</span>
+                        <span class="text-on-surface-variant" style="font-size: 0.65rem;">${mealLabel}</span>
+                    </div>
+                </div>
+                <span class="font-bold text-tertiary" style="font-size: 0.78rem;">${kcal}</span>
+            `;
+
+            if (logList) {
+                logList.insertBefore(entry, logList.firstChild);
+            }
+
+            // Update total
+            if (todayTotal) {
+                const currentTotal = parseInt(todayTotal.textContent.replace(/[^0-9]/g, '')) || 0;
+                const newTotal = currentTotal + kcal;
+                todayTotal.textContent = newTotal.toLocaleString() + ' kcal';
+            }
+
+            // Clear form
+            if (foodInput) foodInput.value = '';
+            if (calorieInput) calorieInput.value = '';
+        });
+    }
 });

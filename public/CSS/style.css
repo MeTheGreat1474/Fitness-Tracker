@@ -272,12 +272,11 @@ a { text-decoration: none; }
 
 /* =========================================================
    FITNESS TRACKER MODULE ONLY
-   Paste below your existing style.css
    ========================================================= */
 
 /* Tracker Theme */
 :root{
-    --lime:#ccff00;
+    --lime:var(--primary-container);
     --lime-dim:rgba(204,255,0,.12);
     --glass-bg:rgba(255,255,255,.035);
     --glass-border:rgba(255,255,255,.09);
@@ -308,7 +307,7 @@ a { text-decoration: none; }
     font-weight:900;
     font-size:1.35rem;
     letter-spacing:-.04em;
-    color:var(--lime);
+    color:var(--primary);
 }
 
 .k-nav-links a{

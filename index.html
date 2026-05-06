@@ -287,21 +287,24 @@ START YOUR ELITE TRIAL
             });
         });
     </script>
-<div class="modal fade" id="authModal" tabindex="-1">
+<div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true" data-bs-theme="dark">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content bg-dark text-white p-4 rounded-4 text-center">
+    <div class="modal-content bg-surface-container-high border-outline-variant p-4 rounded-4 text-center border-0 shadow-lg">
+      <div class="modal-header border-0 pb-0 justify-content-center position-relative">
+          <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pb-2">
+          <h2 class="mb-2 font-black font-headline text-white fst-italic display-6">BECOME A<span class="text-primary-container"> MEMBER</span></h2>
+          <p class="text-sm text-on-surface-variant mb-5">Please sign up or log in to continue</p>
 
-      <h2 class="mb-3">Welcome</h2>
-      <p class="mb-4">Please sign up or login to continue</p>
+          <a href="app/signup.html" class="btn w-100 font-bold tracking-widest mb-3 py-3" style="background-color: var(--primary-container); color: var(--on-primary-container);">
+            SIGN UP NOW
+          </a>
 
-      <a href="app/signup.html" class="btn btn-success mb-3 w-100">
-        Sign Up
-      </a>
-
-      <a href="app/login.html" class="btn btn-outline-light w-100">
-        Login
-      </a>
-
+          <a href="app/login.html" class="btn btn-outline-light w-100 font-bold tracking-widest py-3 border-outline-variant text-white" style="transition: 0.2s;" onmouseover="this.style.backgroundColor='var(--surface-container)'" onmouseout="this.style.backgroundColor='transparent'">
+            LOG IN
+          </a>
+      </div>
     </div>
   </div>
 </div>

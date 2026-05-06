@@ -69,12 +69,7 @@
                 <span>Profile</span>
             </a>
         </nav>
-        <div class="p-2 mb-4">
-            <button class="btn-log w-100">
-                <span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
-                <span class="text-xs">Log Workout</span>
-            </button>
-        </div>
+
     </aside>
 
     <!-- Main Content -->
@@ -136,43 +131,80 @@
                     </div>
                 </a>
 
-                <!-- Reminders Bento Section -->
-                <section class="mt-2">
-                    <h3 class="h5 font-black font-headline text-uppercase tracking-tighter fst-italic mb-4">Agenda</h3>
-                    <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                            <div class="bg-surface-container p-4 rounded-4 position-relative overflow-hidden h-100">
-                                <span class="material-symbols-outlined text-primary-container mb-3 fs-3"
-                                    data-icon="water_drop">water_drop</span>
-                                <h5 class="font-bold mb-1 fs-6">Hydration Goal</h5>
-                                <p class="text-xs text-on-surface-variant mb-4">Drink 500ml now to stay on track for
-                                    your daily target.</p>
-                                <button
-                                    class="btn btn-link p-0 text-xxs font-black text-uppercase tracking-widest text-primary-container text-decoration-none">Done</button>
-                                <div class="position-absolute opacity-25" style="bottom: -20px; right: -20px;">
-                                    <span class="material-symbols-outlined text-white-50" style="font-size: 100px;"
-                                        data-icon="water_full">water_full</span>
+                <!-- Nutritional Insights -->
+                <div class="col-12">
+                    <div class="bg-surface-container-low p-4 rounded-4 h-100 position-relative overflow-hidden">
+                        <div
+                            class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4 gap-3 position-relative z-10">
+                            <h3 class="h5 font-black font-headline text-white fst-italic mb-0">
+                                Nutritional Insights</h3>
+                            <div class="filter-btn-group d-flex gap-2 bg-surface-container p-1 rounded-pill">
+                                <button class="btn btn-sm active" id="btn-daily">DAILY</button>
+                                <button class="btn btn-sm" id="btn-weekly">WEEKLY</button>
+                                <button class="btn btn-sm" id="btn-monthly">MONTHLY</button>
+                            </div>
+                        </div>
+                        <div class="row g-4 position-relative z-10">
+
+                            <div class="col-4 position-relative z-10">
+                                <h2 id="protein-val" class="display-6 font-black font-headline text-primary-container mb-1">
+                                    0g</h2>
+                                <span
+                                    class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Protein
+                                    (High)</span>
+                                <div class="mt-4 nutrition-bar-chart">
+                                    <div class="bg-primary-container opacity-50" data-target-height="60%"
+                                        style="height: 0%;"></div>
+                                    <div class="bg-primary-container" data-target-height="100%" style="height: 0%;"></div>
+                                    <div class="bg-primary-container opacity-75" data-target-height="40%"
+                                        style="height: 0%;"></div>
+                                    <div class="bg-primary-container opacity-50" data-target-height="80%"
+                                        style="height: 0%;"></div>
+                                    <div class="bg-primary-container opacity-50" data-target-height="30%"
+                                        style="height: 0%;"></div>
+                                </div>
+                            </div>
+                            <div class="col-4 position-relative z-10">
+                                <h2 id="carbs-val" class="display-6 font-black font-headline text-secondary mb-1">0g</h2>
+                                <span
+                                    class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Carbohydrates</span>
+                                <div class="mt-4 nutrition-bar-chart">
+                                    <div class="bg-secondary opacity-50" data-target-height="40%" style="height: 0%;"></div>
+                                    <div class="bg-secondary opacity-75" data-target-height="60%" style="height: 0%;"></div>
+                                    <div class="bg-secondary" data-target-height="100%" style="height: 0%;"></div>
+                                    <div class="bg-secondary opacity-50" data-target-height="50%" style="height: 0%;"></div>
+                                    <div class="bg-secondary opacity-50" data-target-height="70%" style="height: 0%;"></div>
+                                </div>
+                            </div>
+                            <div class="col-4 position-relative z-10">
+                                <h2 id="fats-val" class="display-6 font-black font-headline text-tertiary mb-1">0g</h2>
+                                <span
+                                    class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Healthy
+                                    Fats</span>
+                                <div class="mt-4 nutrition-bar-chart">
+                                    <div class="bg-tertiary opacity-75" data-target-height="50%" style="height: 0%;"></div>
+                                    <div class="bg-tertiary" data-target-height="100%" style="height: 0%;"></div>
+                                    <div class="bg-tertiary opacity-50" data-target-height="40%" style="height: 0%;"></div>
+                                    <div class="bg-tertiary opacity-75" data-target-height="60%" style="height: 0%;"></div>
+                                    <div class="bg-tertiary opacity-50" data-target-height="30%" style="height: 0%;"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="bg-surface-container p-4 rounded-4 position-relative overflow-hidden h-100">
-                                <span class="material-symbols-outlined text-secondary mb-3 fs-3"
-                                    data-icon="alarm">alarm</span>
-                                <h5 class="font-bold mb-1 fs-6">Rest & Mobility</h5>
-                                <p class="text-xs text-on-surface-variant mb-4">Deep stretching session scheduled for
-                                    20:00 PM tonight.</p>
-                                <button
-                                    class="btn btn-link p-0 text-xxs font-black text-uppercase tracking-widest text-secondary text-decoration-none">Remind
-                                    Later</button>
-                                <div class="position-absolute opacity-25" style="bottom: -20px; right: -20px;">
-                                    <span class="material-symbols-outlined text-white-50" style="font-size: 100px;"
-                                        data-icon="self_improvement">self_improvement</span>
-                                </div>
+
+                        <div class="mt-4 pt-4 border-top border-outline-variant position-relative z-10 d-flex justify-content-between align-items-center">
+                            <div>
+                                <h2 id="macro-total-val" class="display-6 font-black font-headline text-white mb-1">0kcal
+                                </h2>
+                                <span
+                                    class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Macro-Based
+                                    Calories</span>
                             </div>
+                            <button class="btn rounded-pill font-bold px-4 py-2" style="background-color: var(--primary-container); color: var(--on-primary-container);" data-bs-toggle="modal" data-bs-target="#quickAddModal">
+                                + Quick Add
+                            </button>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
 
@@ -246,7 +278,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="../public/JS/charts.js"></script>
-    <script src="../public/JS/dashboard.js"></script>
+    <script src="../public/JS/nutrition.js"></script>
 </body>
 
 </html>

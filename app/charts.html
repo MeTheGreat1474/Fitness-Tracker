@@ -68,6 +68,57 @@
             transform: rotate(-45deg);
         }
 
+        /* Meal Type Buttons */
+        .meal-type-btn {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.4rem 1rem;
+            color: var(--bs-gray-400);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .meal-type-btn:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .meal-type-btn.active {
+            background-color: var(--primary-container) !important;
+            color: var(--on-primary-container) !important;
+            border-color: var(--primary-container) !important;
+        }
+
+        /* Quick Add Buttons */
+        .quick-add-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        .quick-add-btn:hover {
+            background: rgba(209, 252, 0, 0.08);
+            border-color: rgba(209, 252, 0, 0.2);
+            box-shadow: 0 0 16px -4px rgba(209, 252, 0, 0.15);
+        }
+
+        /* Form Inputs */
+        .form-control::placeholder,
+        .form-select {
+            color: rgba(255, 255, 255, 0.3) !important;
+            font-size: 0.82rem;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            box-shadow: 0 0 0 2px rgba(209, 252, 0, 0.2);
+            border-color: var(--primary-container) !important;
+        }
+
         /* Color Overrides based on mockup */
         :root {
             --bs-lime: #d1fc00;
@@ -90,10 +141,55 @@
                 class="fs-2 font-black text-primary-container font-headline tracking-tight">KINETIC</a>
         </div>
         <div class="d-flex align-items-center gap-3">
-            <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
-                <span class="material-symbols-outlined text-white-50 icon"
-                    data-icon="notifications">notifications</span>
-            </button>
+            <div class="position-relative">
+    <button
+        id="notificationBtn"
+        class="btn text-secondary p-1 text-decoration-none rounded-circle"
+        type="button">
+
+        <div class="position-relative" style="width: 24px; height: 24px;">
+            <span class="material-symbols-outlined text-white-50 icon">
+                notifications
+            </span>
+
+            <span
+                id="notificationDot"
+                style="
+                    display: none;
+                    position: absolute;
+                    top: 1px;
+                    right: -1px;
+                    width: 10px;
+                    height: 10px;
+                    background-color: red;
+                    border-radius: 50%;
+                    border: 2px solid #11161c;
+                ">
+            </span>
+        </div>
+    </button>
+
+    <div
+        id="notificationPanel"
+        class="bg-dark border rounded-4 shadow p-3"
+        style="
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            width: 320px;
+            max-height: 350px;
+            overflow-y: auto;
+            z-index: 999;
+        ">
+
+        <h6 class="fw-bold mb-3 text-white">Notifications</h6>
+
+        <div id="notificationPopupList">
+            <p class="text-secondary mb-0">No notifications yet.</p>
+        </div>
+    </div>
+</div>
             <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
                 <span class="material-symbols-outlined text-white-50 icon" data-icon="settings">settings</span>
             </button>
@@ -170,18 +266,12 @@
             <!-- Main Line Chart (Step Trajectory) -->
             <div class="col-12 col-xl-8 d-flex flex-column">
                 <div class="bg-surface-container-high p-4 rounded-4 position-relative h-100">
-                    <div class="d-flex justify-content-between align-items-start mb-4">
-                        <div>
-                            <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant">STEP
-                                TRAJECTORY</span>
-                            <h2 class="display-4 font-black font-headline text-primary-container mt-1 mb-0"
-                                id="step-value">84,200 <span class="fs-6 font-normal text-on-surface-variant">/wk</span>
-                            </h2>
-                        </div>
-                        <div class="d-flex align-items-center gap-1 text-tertiary">
-                            <span class="material-symbols-outlined fs-5">trending_up</span>
-                            <span class="font-bold fs-5">+12%</span>
-                        </div>
+                    <div class="mb-4">
+                        <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant">STEP
+                            TRAJECTORY</span>
+                        <h2 class="display-4 font-black font-headline text-primary-container mt-1 mb-0"
+                            id="step-value">84,200 <span class="fs-6 font-normal text-on-surface-variant">/wk</span>
+                        </h2>
                     </div>
                     <div style="height: 300px; width: 100%;">
                         <canvas id="stepTrajectoryChart"></canvas>
@@ -201,17 +291,10 @@
                         <canvas id="highIntensityChart"></canvas>
                     </div>
 
-                    <div
-                        class="mt-4 pt-3 border-top border-outline-variant d-flex justify-content-between align-items-center">
-                        <div>
-                            <span
-                                class="text-xxs text-uppercase font-bold tracking-widest text-on-surface-variant d-block mb-1">TARGET</span>
-                            <span class="font-bold fs-5" id="intensity-target">250 min/wk</span>
-                        </div>
-                        <div class="rounded-circle border border-tertiary d-flex align-items-center justify-content-center p-2"
-                            style="width: 48px; height: 48px;">
-                            <span class="text-xs font-bold text-tertiary">128%</span>
-                        </div>
+                    <div class="mt-4 pt-3 border-top border-outline-variant">
+                        <span
+                            class="text-xxs text-uppercase font-bold tracking-widest text-on-surface-variant d-block mb-1">TARGET</span>
+                        <span class="font-bold fs-5" id="intensity-target">250 min/wk</span>
                     </div>
                 </div>
             </div>
@@ -241,29 +324,127 @@
                 </div>
             </div>
 
-            <!-- Action Cards Row -->
-            <div class="col-12 col-md-4">
-                <div class="action-card p-4 rounded-4 h-100 cursor-pointer">
-                    <span class="material-symbols-outlined text-tertiary mb-3">analytics</span>
-                    <h4 class="h5 font-bold mb-2">Export Health Report</h4>
-                    <p class="text-xs text-on-surface-variant mb-0">Generate a PDF of your monthly cardiovascular
-                        performance.</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="action-card p-4 rounded-4 h-100 cursor-pointer">
-                    <span class="material-symbols-outlined text-primary-container mb-3">track_changes</span>
-                    <h4 class="h5 font-bold mb-2">Recalibrate Goals</h4>
-                    <p class="text-xs text-on-surface-variant mb-0">Based on recent data, we suggest increasing daily
-                        steps to 12k.</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="action-card p-4 rounded-4 h-100 cursor-pointer">
-                    <span class="material-symbols-outlined text-danger mb-3">warning</span>
-                    <h4 class="h5 font-bold mb-2">Rest Required</h4>
-                    <p class="text-xs text-on-surface-variant mb-0">Muscle fatigue is peaking. Schedule a recovery
-                        session tomorrow.</p>
+            <!-- Caloric Intake Entry -->
+            <div class="col-12">
+                <div class="bg-surface-container-high p-4 rounded-4">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4">
+                        <div>
+                            <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant">LOG INTAKE</span>
+                            <h3 class="h4 font-black font-headline mt-1 mb-0">Caloric <span class="text-primary-container">Entry</span></h3>
+                        </div>
+                        <!-- Meal Type Selector -->
+                        <div class="d-flex gap-2 mt-3 mt-lg-0" id="meal-type-selector">
+                            <button class="btn btn-sm rounded-pill meal-type-btn active" data-meal="breakfast">
+                                <span class="material-symbols-outlined fs-6 me-1">egg_alt</span>Breakfast
+                            </button>
+                            <button class="btn btn-sm rounded-pill meal-type-btn" data-meal="lunch">
+                                <span class="material-symbols-outlined fs-6 me-1">lunch_dining</span>Lunch
+                            </button>
+                            <button class="btn btn-sm rounded-pill meal-type-btn" data-meal="dinner">
+                                <span class="material-symbols-outlined fs-6 me-1">dinner_dining</span>Dinner
+                            </button>
+                            <button class="btn btn-sm rounded-pill meal-type-btn" data-meal="snack">
+                                <span class="material-symbols-outlined fs-6 me-1">cookie</span>Snack
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <!-- Input Form -->
+                        <div class="col-12 col-lg-5">
+                            <div class="bg-surface-container p-3 rounded-3">
+                                <div class="mb-3">
+                                    <label class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant d-block mb-2" for="food-item-name">Food Item</label>
+                                    <input type="text" id="food-item-name" class="form-control bg-surface-container-low border-0 text-white rounded-pill px-3" placeholder="e.g. Grilled Chicken Breast" style="height: 44px;" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant d-block mb-2" for="calorie-amount">Calories</label>
+                                    <input type="number" id="calorie-amount" class="form-control bg-surface-container-low border-0 text-white rounded-pill px-3" placeholder="Enter kcal" min="0" style="height: 44px;" />
+                                </div>
+                                <button id="btn-add-entry" class="btn w-100 rounded-pill font-bold text-uppercase tracking-widest text-xxs py-2 mt-2" style="background-color: var(--primary-container); color: var(--on-primary-container); height: 44px;">
+                                    <span class="material-symbols-outlined fs-6 me-1">add_circle</span> Log Entry
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Quick Add -->
+                        <div class="col-12 col-lg-3">
+                            <div class="bg-surface-container p-3 rounded-3 h-100 d-flex flex-column">
+                                <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant mb-3">Quick Add</span>
+                                <div class="d-flex flex-column gap-2 flex-grow-1">
+                                    <button class="btn btn-sm quick-add-btn d-flex align-items-center gap-2 rounded-pill px-3 py-2 text-start">
+                                        <span class="material-symbols-outlined fs-6 text-primary-container">bolt</span>
+                                        <span class="flex-grow-1 text-white font-bold" style="font-size: 0.78rem;">Protein Shake</span>
+                                        <span class="text-on-surface-variant" style="font-size: 0.7rem;">220 kcal</span>
+                                    </button>
+                                    <button class="btn btn-sm quick-add-btn d-flex align-items-center gap-2 rounded-pill px-3 py-2 text-start">
+                                        <span class="material-symbols-outlined fs-6 text-primary-container">bolt</span>
+                                        <span class="flex-grow-1 text-white font-bold" style="font-size: 0.78rem;">Banana</span>
+                                        <span class="text-on-surface-variant" style="font-size: 0.7rem;">105 kcal</span>
+                                    </button>
+                                    <button class="btn btn-sm quick-add-btn d-flex align-items-center gap-2 rounded-pill px-3 py-2 text-start">
+                                        <span class="material-symbols-outlined fs-6 text-primary-container">bolt</span>
+                                        <span class="flex-grow-1 text-white font-bold" style="font-size: 0.78rem;">Rice Bowl</span>
+                                        <span class="text-on-surface-variant" style="font-size: 0.7rem;">340 kcal</span>
+                                    </button>
+                                    <button class="btn btn-sm quick-add-btn d-flex align-items-center gap-2 rounded-pill px-3 py-2 text-start">
+                                        <span class="material-symbols-outlined fs-6 text-primary-container">bolt</span>
+                                        <span class="flex-grow-1 text-white font-bold" style="font-size: 0.78rem;">Grilled Chicken</span>
+                                        <span class="text-on-surface-variant" style="font-size: 0.7rem;">280 kcal</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Today's Log -->
+                        <div class="col-12 col-lg-4">
+                            <div class="bg-surface-container p-3 rounded-3 h-100 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="font-bold text-xxs text-uppercase tracking-widest text-on-surface-variant">Today's Log</span>
+                                    <span class="font-bold text-xs text-primary-container" id="today-total">1,245 kcal</span>
+                                </div>
+                                <div class="flex-grow-1 overflow-auto" id="todays-log-list" style="max-height: 200px;">
+                                    <!-- Sample entries -->
+                                    <div class="d-flex align-items-center justify-content-between py-2 border-bottom" style="border-color: rgba(255,255,255,0.05) !important;">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: rgba(209,252,0,0.12);">
+                                                <span class="material-symbols-outlined text-primary-container" style="font-size: 14px;">egg_alt</span>
+                                            </span>
+                                            <div>
+                                                <span class="d-block font-bold text-white" style="font-size: 0.78rem;">Oatmeal + Berries</span>
+                                                <span class="text-on-surface-variant" style="font-size: 0.65rem;">Breakfast</span>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold text-tertiary" style="font-size: 0.78rem;">350</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between py-2 border-bottom" style="border-color: rgba(255,255,255,0.05) !important;">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: rgba(209,252,0,0.12);">
+                                                <span class="material-symbols-outlined text-primary-container" style="font-size: 14px;">lunch_dining</span>
+                                            </span>
+                                            <div>
+                                                <span class="d-block font-bold text-white" style="font-size: 0.78rem;">Chicken Salad</span>
+                                                <span class="text-on-surface-variant" style="font-size: 0.65rem;">Lunch</span>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold text-tertiary" style="font-size: 0.78rem;">480</span>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between py-2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; background: rgba(209,252,0,0.12);">
+                                                <span class="material-symbols-outlined text-primary-container" style="font-size: 14px;">cookie</span>
+                                            </span>
+                                            <div>
+                                                <span class="d-block font-bold text-white" style="font-size: 0.78rem;">Protein Bar</span>
+                                                <span class="text-on-surface-variant" style="font-size: 0.65rem;">Snack</span>
+                                            </div>
+                                        </div>
+                                        <span class="font-bold text-tertiary" style="font-size: 0.78rem;">415</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -299,6 +480,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom JS -->
     <script src="../public/JS/charts.js"></script>
+    <script src="../public/JS/notification.js"></script>
 </body>
 
 </html>

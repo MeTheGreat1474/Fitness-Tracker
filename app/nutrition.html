@@ -25,10 +25,55 @@
                 class="fs-2 font-black text-primary-container font-headline tracking-tight">KINETIC</a>
         </div>
         <div class="d-flex align-items-center gap-3">
-            <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
-                <span class="material-symbols-outlined text-white-50 icon"
-                    data-icon="notifications">notifications</span>
-            </button>
+            <div class="position-relative">
+    <button
+        id="notificationBtn"
+        class="btn text-secondary p-1 text-decoration-none rounded-circle"
+        type="button">
+
+        <div class="position-relative" style="width: 24px; height: 24px;">
+            <span class="material-symbols-outlined text-white-50 icon">
+                notifications
+            </span>
+
+            <span
+                id="notificationDot"
+                style="
+                    display: none;
+                    position: absolute;
+                    top: 1px;
+                    right: -1px;
+                    width: 10px;
+                    height: 10px;
+                    background-color: red;
+                    border-radius: 50%;
+                    border: 2px solid #11161c;
+                ">
+            </span>
+        </div>
+    </button>
+
+    <div
+        id="notificationPanel"
+        class="bg-dark border rounded-4 shadow p-3"
+        style="
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            width: 320px;
+            max-height: 350px;
+            overflow-y: auto;
+            z-index: 999;
+        ">
+
+        <h6 class="fw-bold mb-3 text-white">Notifications</h6>
+
+        <div id="notificationPopupList">
+            <p class="text-secondary mb-0">No notifications yet.</p>
+        </div>
+    </div>
+</div>
             <button class="btn text-secondary p-1 text-decoration-none rounded-circle ">
                 <span class="material-symbols-outlined text-white-50 icon" data-icon="settings">settings</span>
             </button>
@@ -530,6 +575,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../public/JS/nutrition.js"></script>
+    <script src="../public/JS/notification.js"></script>
 </body>
 
 </html>

@@ -14,53 +14,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../public/CSS/style.css" />
-    <style>
-        .hover-text-white:hover {
-            color: white !important;
-            transition: var(--transition);
-        }
-
-        .hover-text-tertiary:hover {
-            color: var(--tertiary) !important;
-            transition: var(--transition);
-        }
-
-        .cursor-pointer {
-            cursor: pointer;
-        }
-
-        .nutrition-bar-chart {
-            display: flex;
-            align-items: flex-end;
-            gap: 4px;
-            height: 40px;
-        }
-
-        .nutrition-bar-chart>div {
-            width: 8px;
-            border-radius: 4px;
-            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .filter-btn-group .btn {
-            border-radius: 50px;
-            padding: 0.5rem 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--on-surface-variant);
-            background: transparent;
-            border: 1px solid var(--outline-variant);
-            transition: all 0.2s;
-        }
-
-        .filter-btn-group .btn.active {
-            background-color: var(--primary-container) !important;
-            color: var(--on-primary-container) !important;
-            border-color: var(--primary-container) !important;
-        }
-    </style>
 </head>
 
 <body class="bg-surface text-white">
@@ -125,10 +78,16 @@
         <!-- Hero Section -->
         <div class="row align-items-end mb-4">
             <div class="col-12 col-xl-8">
-                <span class="font-bold text-xs text-uppercase tracking-widest text-secondary">Fuel Your
-                    Precision</span>
+                <div class="d-flex align-items-end gap-3 mb-2">
+                    <span class="font-bold text-xs text-uppercase tracking-widest text-secondary">Fuel Your
+                        Precision</span>
+                    <div class="flex-grow-1 bg-outline-variant opacity-25 mb-2" style="height: 1px;"></div>
+                </div>
                 <h1 class="display-2 font-black font-headline tracking-tighter lh-1 fst-italic mt-2 mb-0 text-white">
                     NUTRITION<br><span class="text-secondary">CHOREOGRAPHY</span></h1>
+                <p id="nutrition-subtitle" class="text-on-surface-variant mt-3 mb-0">
+                    Detailed tracking of your daily macro intake and metabolic fuel.
+                </p>
             </div>
             <div class="col-12 col-xl-4 mt-4 mt-xl-0">
                 <!-- Daily burn goal box -->
@@ -222,7 +181,8 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 pt-4 border-top border-outline-variant position-relative z-10 d-flex justify-content-between align-items-center">
+                    <div
+                        class="mt-4 pt-4 border-top border-outline-variant position-relative z-10 d-flex justify-content-between align-items-center">
                         <div>
                             <h2 id="macro-total-val" class="display-6 font-black font-headline text-white mb-1">0kcal
                             </h2>
@@ -230,7 +190,9 @@
                                 class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">Macro-Based
                                 Calories</span>
                         </div>
-                        <button class="btn rounded-pill font-bold px-4 py-2" style="background-color: var(--primary-container); color: var(--on-primary-container);" data-bs-toggle="modal" data-bs-target="#quickAddModal">
+                        <button class="btn rounded-pill font-bold px-4 py-2"
+                            style="background-color: var(--primary-container); color: var(--on-primary-container);"
+                            data-bs-toggle="modal" data-bs-target="#quickAddModal">
                             + Quick Add
                         </button>
                     </div>
@@ -320,20 +282,26 @@
                                 lemon tahini dressing.</p>
 
                             <div class="d-flex align-items-center justify-content-between mt-auto">
-                                <div class="d-flex gap-4">
+                                <div class="d-flex gap-3">
                                     <div>
                                         <div class="h5 font-black font-headline mb-0">540</div>
                                         <div
                                             class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
                                             Kcal</div>
                                     </div>
-                                    <div class="border-start border-outline-variant ps-4">
+                                    <div class="border-start border-outline-variant ps-3">
                                         <div class="h5 font-black font-headline mb-0">42g</div>
                                         <div
                                             class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
                                             Protein</div>
                                     </div>
-                                    <div class="border-start border-outline-variant ps-4">
+                                    <div class="border-start border-outline-variant ps-3">
+                                        <div class="h5 font-black font-headline mb-0">53g</div>
+                                        <div
+                                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
+                                            Carbs</div>
+                                    </div>
+                                    <div class="border-start border-outline-variant ps-3">
                                         <div class="h5 font-black font-headline mb-0">18g</div>
                                         <div
                                             class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
@@ -376,20 +344,26 @@
                                 tomatoes, and roasted chickpeas.</p>
 
                             <div class="d-flex align-items-center justify-content-between mt-auto">
-                                <div class="d-flex gap-4">
+                                <div class="d-flex gap-3">
                                     <div>
                                         <div class="h5 font-black font-headline mb-0">410</div>
                                         <div
                                             class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
                                             Kcal</div>
                                     </div>
-                                    <div class="border-start border-outline-variant ps-4">
+                                    <div class="border-start border-outline-variant ps-3">
                                         <div class="h5 font-black font-headline mb-0">14g</div>
                                         <div
                                             class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
                                             Protein</div>
                                     </div>
-                                    <div class="border-start border-outline-variant ps-4">
+                                    <div class="border-start border-outline-variant ps-3">
+                                        <div class="h5 font-black font-headline mb-0">62g</div>
+                                        <div
+                                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
+                                            Carbs</div>
+                                    </div>
+                                    <div class="border-start border-outline-variant ps-3">
                                         <div class="h5 font-black font-headline mb-0">12g</div>
                                         <div
                                             class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant">
@@ -486,7 +460,8 @@
             <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
             <span class="text-xxs font-bold text-uppercase tracking-tighter">Home</span>
         </a>
-        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none" href="Fitness_Tracker.html">
+        <a class="d-flex flex-column align-items-center gap-1 text-white-50 text-decoration-none"
+            href="Fitness_Tracker.html">
             <span class="material-symbols-outlined" data-icon="fitness_center">fitness_center</span>
             <span class="text-xxs font-bold text-uppercase tracking-tighter">Log</span>
         </a>
@@ -507,28 +482,44 @@
     </nav>
 
     <!-- Quick Add Modal -->
-    <div class="modal fade" id="quickAddModal" tabindex="-1" aria-labelledby="quickAddModalLabel" aria-hidden="true" data-bs-theme="dark">
+    <div class="modal fade" id="quickAddModal" tabindex="-1" aria-labelledby="quickAddModalLabel" aria-hidden="true"
+        data-bs-theme="dark">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-surface-container-high border-outline-variant">
                 <div class="modal-header border-outline-variant">
-                    <h5 class="modal-title font-black font-headline text-white fst-italic" id="quickAddModalLabel">QUICK ADD MACROS</h5>
+                    <h5 class="modal-title font-black font-headline text-white fst-italic" id="quickAddModalLabel">QUICK
+                        ADD MACROS</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-sm text-on-surface-variant mb-4">Add your recently consumed macros to your daily totals.</p>
+                    <p class="text-sm text-on-surface-variant mb-4">Add your recently consumed macros to your daily
+                        totals.</p>
                     <div class="mb-3">
-                        <label class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Protein (g)</label>
-                        <input type="number" id="quick-add-protein" class="form-control bg-surface-container border-outline-variant text-white" placeholder="0" min="0">
+                        <label
+                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Protein
+                            (g)</label>
+                        <input type="number" id="quick-add-protein"
+                            class="form-control bg-surface-container border-outline-variant text-white" placeholder="0"
+                            min="0">
                     </div>
                     <div class="mb-3">
-                        <label class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Carbohydrates (g)</label>
-                        <input type="number" id="quick-add-carbs" class="form-control bg-surface-container border-outline-variant text-white" placeholder="0" min="0">
+                        <label
+                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Carbohydrates
+                            (g)</label>
+                        <input type="number" id="quick-add-carbs"
+                            class="form-control bg-surface-container border-outline-variant text-white" placeholder="0"
+                            min="0">
                     </div>
                     <div class="mb-4">
-                        <label class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Fats (g)</label>
-                        <input type="number" id="quick-add-fats" class="form-control bg-surface-container border-outline-variant text-white" placeholder="0" min="0">
+                        <label
+                            class="text-xxs font-bold text-uppercase tracking-widest text-on-surface-variant mb-2 d-block">Fats
+                            (g)</label>
+                        <input type="number" id="quick-add-fats"
+                            class="form-control bg-surface-container border-outline-variant text-white" placeholder="0"
+                            min="0">
                     </div>
-                    <button id="btn-save-quick-add" class="btn w-100 py-3 font-bold tracking-widest" style="background-color: var(--primary-container); color: var(--on-primary-container);">
+                    <button id="btn-save-quick-add" class="btn w-100 py-3 font-bold tracking-widest"
+                        style="background-color: var(--primary-container); color: var(--on-primary-container);">
                         ADD TO TOTALS
                     </button>
                 </div>

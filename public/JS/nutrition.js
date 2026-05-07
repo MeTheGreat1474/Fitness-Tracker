@@ -192,6 +192,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (btnDaily) {
             btnDaily.addEventListener('click', () => {
                 setActiveBtn(btnDaily);
+                const subtitleEl = document.getElementById('nutrition-subtitle');
+                if (subtitleEl) subtitleEl.textContent = 'Detailed breakdown of your daily macro intake and metabolic fuel.';
                 animateValue(proteinValEl, getVal(proteinValEl), macros.protein, 1000, 'g');
                 animateValue(carbsValEl, getVal(carbsValEl), macros.carbs, 1000, 'g');
                 animateValue(fatsValEl, getVal(fatsValEl), macros.fats, 1000, 'g');
@@ -202,6 +204,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (btnWeekly) {
             btnWeekly.addEventListener('click', () => {
                 setActiveBtn(btnWeekly);
+                const subtitleEl = document.getElementById('nutrition-subtitle');
+                if (subtitleEl) subtitleEl.textContent = 'Detailed breakdown of your weekly macro intake and metabolic fuel.';
                 animateValue(proteinValEl, getVal(proteinValEl), macros.protein * 7, 1000, 'g');
                 animateValue(carbsValEl, getVal(carbsValEl), macros.carbs * 7, 1000, 'g');
                 animateValue(fatsValEl, getVal(fatsValEl), macros.fats * 7, 1000, 'g');
@@ -212,6 +216,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (btnMonthly) {
             btnMonthly.addEventListener('click', () => {
                 setActiveBtn(btnMonthly);
+                const subtitleEl = document.getElementById('nutrition-subtitle');
+                if (subtitleEl) subtitleEl.textContent = 'Detailed breakdown of your monthly macro intake and metabolic fuel.';
                 animateValue(proteinValEl, getVal(proteinValEl), macros.protein * 30, 1000, 'g');
                 animateValue(carbsValEl, getVal(carbsValEl), macros.carbs * 30, 1000, 'g');
                 animateValue(fatsValEl, getVal(fatsValEl), macros.fats * 30, 1000, 'g');
